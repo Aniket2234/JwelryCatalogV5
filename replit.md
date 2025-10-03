@@ -119,7 +119,54 @@ Preferred communication style: Simple, everyday language.
 
 ## Replit Environment Setup
 
-### Configuration
+### Initial Setup (Fresh Import)
+
+**Date**: October 3, 2025
+
+This project was successfully imported into Replit. All dependencies have been installed and the project structure is configured properly.
+
+#### Setup Status
+✅ Node.js dependencies installed
+✅ Workflow configured for port 5000
+✅ Vite dev server configured with `allowedHosts: true`
+✅ Server binds to `0.0.0.0:5000`
+⚠️ **Action Required**: MongoDB URI needs to be configured
+
+#### Required MongoDB Setup
+
+This application requires a MongoDB database to store:
+- Product catalog (jewelry items)
+- Categories (necklaces, rings, earrings, etc.)
+- Carousel images for homepage
+- Shop information
+
+**To set up MongoDB:**
+
+1. **Option A - MongoDB Atlas (Recommended for production)**:
+   - Create a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+   - Create a new cluster (free tier available)
+   - Get your connection string
+   - Add it to Replit Secrets as `MONGODB_URI`
+
+2. **Option B - Any MongoDB Provider**:
+   - Use any MongoDB hosting service
+   - Get your connection string (format: `mongodb+srv://username:password@cluster.mongodb.net/database_name`)
+   - Add it to Replit Secrets as `MONGODB_URI`
+
+**Adding to Replit Secrets:**
+1. Click on "Tools" in the left sidebar
+2. Click on "Secrets"
+3. Add a new secret:
+   - Key: `MONGODB_URI`
+   - Value: Your MongoDB connection string
+4. Save and restart the application
+
+Once the MongoDB URI is set, the application will:
+- Automatically connect to the database
+- Create necessary indexes for performance
+- Be ready to store and retrieve data
+
+### Configuration Details
 - **Workflow**: "Start application" runs `npm run dev` on port 5000
 - **Deployment**: Configured for autoscale deployment with build and production start commands
 - **Host Configuration**: 
@@ -127,14 +174,14 @@ Preferred communication style: Simple, everyday language.
   - Vite dev server has `allowedHosts: true` (required for Replit's proxy)
 
 ### Required Secrets
-- `MONGODB_URI`: MongoDB connection string (stored in Replit Secrets)
+- `MONGODB_URI`: MongoDB connection string (stored in Replit Secrets) - **MUST BE CONFIGURED**
 
 ### Development Commands
 - `npm run dev`: Start development server (Express + Vite HMR)
 - `npm run build`: Build for production
 - `npm run start`: Run production server
 - `npm run check`: TypeScript type checking
-- `npm run db:push`: Push Drizzle schema to database
+- `npm run db:push`: Push Drizzle schema to database (for PostgreSQL alternative)
 
 ### Key Features Configured for Replit
 1. Single port (5000) serves both API and frontend
