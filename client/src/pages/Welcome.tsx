@@ -288,7 +288,7 @@ export default function Welcome() {
               href="https://www.instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative p-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              className="group relative p-3 bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF] backdrop-blur-sm rounded-full hover:scale-110 transition-all duration-300"
               aria-label="Instagram"
               data-testid="link-instagram-welcome"
             >
@@ -300,7 +300,7 @@ export default function Welcome() {
               href="https://wa.me/1234567890"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative p-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              className="group relative p-3 bg-[#25D366] backdrop-blur-sm rounded-full hover:scale-110 transition-all duration-300"
               aria-label="WhatsApp"
               data-testid="link-whatsapp-welcome"
             >
@@ -312,7 +312,7 @@ export default function Welcome() {
               href="https://www.youtube.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative p-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              className="group relative p-3 bg-[#FF0000] backdrop-blur-sm rounded-full hover:scale-110 transition-all duration-300"
               aria-label="YouTube"
               data-testid="link-youtube-welcome"
             >

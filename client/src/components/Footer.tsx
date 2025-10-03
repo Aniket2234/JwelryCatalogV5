@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { MapPin, Phone, Mail } from "lucide-react";
+import { FaFacebook, FaInstagram, FaPinterest } from "react-icons/fa";
 import type { ShopInfo } from "@shared/schema";
 
 export default function Footer() {
@@ -26,11 +27,11 @@ export default function Footer() {
                   href={shopInfo.facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
+                  className="w-10 h-10 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:scale-110 transition-transform"
                   aria-label="Facebook"
                   data-testid="link-footer-facebook"
                 >
-                  <i className="fab fa-facebook-f" />
+                  <FaFacebook className="h-5 w-5" />
                 </a>
               )}
               {shopInfo?.instagramUrl && (
@@ -38,11 +39,11 @@ export default function Footer() {
                   href={shopInfo.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
+                  className="w-10 h-10 rounded-full bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF] text-white flex items-center justify-center hover:scale-110 transition-transform"
                   aria-label="Instagram"
                   data-testid="link-footer-instagram"
                 >
-                  <i className="fab fa-instagram" />
+                  <FaInstagram className="h-5 w-5" />
                 </a>
               )}
               {shopInfo?.pinterestUrl && (
@@ -50,11 +51,11 @@ export default function Footer() {
                   href={shopInfo.pinterestUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
+                  className="w-10 h-10 rounded-full bg-[#E60023] text-white flex items-center justify-center hover:scale-110 transition-transform"
                   aria-label="Pinterest"
                   data-testid="link-footer-pinterest"
                 >
-                  <i className="fab fa-pinterest" />
+                  <FaPinterest className="h-5 w-5" />
                 </a>
               )}
             </div>
