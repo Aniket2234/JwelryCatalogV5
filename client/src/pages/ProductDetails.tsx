@@ -3,8 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import Header from "@/components/Header";
 import SideDrawer from "@/components/SideDrawer";
+import ShareButton from "@/components/ShareButton";
+import SimilarProducts from "@/components/SimilarProducts";
 import type { Product } from "@shared/schema";
 
 export default function ProductDetails() {
@@ -176,9 +184,23 @@ export default function ProductDetails() {
           {/* Details Section */}
           <div className="flex flex-col">
             <div className="flex-1">
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
-                {product.name}
-              </h1>
+              <div className="flex items-start justify-between mb-2">
+                <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold flex-1">
+                  {product.name}
+                </h1>
+                <div className="flex items-center gap-2 ml-4">
+                  <ShareButton
+                    productName={product.name}
+                    productUrl={`/product/${product._id}`}
+                    productImage={product.imageUrl}
+                  />
+                  <ShareButton
+                    productName={product.name}
+                    productUrl={`/product/${product._id}`}
+                    variant="icon"
+                  />
+                </div>
+              </div>
               <p className="text-sm text-muted-foreground mb-4 capitalize">
                 {product.category}
               </p>
@@ -200,51 +222,118 @@ export default function ProductDetails() {
                 </p>
               </div>
 
-              {/* Product Details */}
-              <div className="space-y-4 mb-6">
-                <h3 className="font-semibold text-lg border-b pb-2">Product Specifications</h3>
-                <div className="grid grid-cols-1 gap-3">
+              {/* Product Specifications - Accordion Style */}
+              <div className="mb-6">
+                <h3 className="font-semibold text-lg border-b pb-2 mb-4">Product Specifications</h3>
+                <Accordion type="multiple" className="space-y-2" defaultValue={["availability"]}>
+                  <AccordionItem value="availability" className="border rounded-lg px-4 bg-secondary/20">
+                    <AccordionTrigger className="hover:no-underline py-3">
+                      <div className="flex items-center justify-between w-full pr-4">
+                        <span className="text-sm font-medium">Availability</span>
+                        <span className={`font-semibold ${product.inStock ? 'text-green-600' : 'text-red-600'}`}>
+                          {product.inStock ? '✓ In Stock' : '✗ Out of Stock'}
+                        </span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-3 text-muted-foreground text-sm">
+                      This product is currently {product.inStock ? 'available' : 'out of stock'} for purchase.
+                    </AccordionContent>
+                  </AccordionItem>
+
                   {product.purity && (
-                    <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg border border-primary/10">
-                      <span className="text-sm text-muted-foreground font-medium">Purity / Karat</span>
-                      <span className="font-semibold text-primary">{product.purity}</span>
-                    </div>
+                    <AccordionItem value="purity" className="border rounded-lg px-4 bg-secondary/20">
+                      <AccordionTrigger className="hover:no-underline py-3">
+                        <div className="flex items-center justify-between w-full pr-4">
+                          <span className="text-sm font-medium">Purity / Karat</span>
+                          <span className="font-semibold text-primary">{product.purity}</span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-3 text-muted-foreground text-sm">
+                        Gold purity measured in karats, indicating the proportion of pure gold in the jewelry.
+                      </AccordionContent>
+                    </AccordionItem>
                   )}
+
                   {product.weight && (
-                    <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg border border-primary/10">
-                      <span className="text-sm text-muted-foreground font-medium">Weight Range</span>
-                      <span className="font-semibold">{product.weight}</span>
-                    </div>
+                    <AccordionItem value="weight" className="border rounded-lg px-4 bg-secondary/20">
+                      <AccordionTrigger className="hover:no-underline py-3">
+                        <div className="flex items-center justify-between w-full pr-4">
+                          <span className="text-sm font-medium">Weight Range</span>
+                          <span className="font-semibold">{product.weight}</span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-3 text-muted-foreground text-sm">
+                        Approximate weight of the jewelry piece. Actual weight may vary slightly.
+                      </AccordionContent>
+                    </AccordionItem>
                   )}
-                  {product.stone && (
-                    <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg border border-primary/10">
-                      <span className="text-sm text-muted-foreground font-medium">Stone / Gemstone</span>
-                      <span className="font-semibold">{product.stone}</span>
-                    </div>
-                  )}
+
+                  <AccordionItem value="category" className="border rounded-lg px-4 bg-secondary/20">
+                    <AccordionTrigger className="hover:no-underline py-3">
+                      <div className="flex items-center justify-between w-full pr-4">
+                        <span className="text-sm font-medium">Category</span>
+                        <span className="font-semibold capitalize">{product.category}</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-3 text-muted-foreground text-sm">
+                      Product category classification for easy browsing and discovery.
+                    </AccordionContent>
+                  </AccordionItem>
+
                   {product.gender && (
-                    <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg border border-primary/10">
-                      <span className="text-sm text-muted-foreground font-medium">Designed For</span>
-                      <span className="font-semibold">{product.gender}</span>
-                    </div>
+                    <AccordionItem value="gender" className="border rounded-lg px-4 bg-secondary/20">
+                      <AccordionTrigger className="hover:no-underline py-3">
+                        <div className="flex items-center justify-between w-full pr-4">
+                          <span className="text-sm font-medium">Designed For</span>
+                          <span className="font-semibold">{product.gender}</span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-3 text-muted-foreground text-sm">
+                        This piece is specifically designed keeping in mind style preferences.
+                      </AccordionContent>
+                    </AccordionItem>
                   )}
+
+                  {product.stone && (
+                    <AccordionItem value="stone" className="border rounded-lg px-4 bg-secondary/20">
+                      <AccordionTrigger className="hover:no-underline py-3">
+                        <div className="flex items-center justify-between w-full pr-4">
+                          <span className="text-sm font-medium">Available Colors</span>
+                          <span className="font-semibold">{product.stone}</span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-3 text-muted-foreground text-sm">
+                        Stone or gemstone details including type and color variations available.
+                      </AccordionContent>
+                    </AccordionItem>
+                  )}
+
                   {product.occasion && (
-                    <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg border border-primary/10">
-                      <span className="text-sm text-muted-foreground font-medium">Best For Occasion</span>
-                      <span className="font-semibold">{product.occasion}</span>
-                    </div>
+                    <AccordionItem value="occasion" className="border rounded-lg px-4 bg-secondary/20">
+                      <AccordionTrigger className="hover:no-underline py-3">
+                        <div className="flex items-center justify-between w-full pr-4">
+                          <span className="text-sm font-medium">Best For Occasion</span>
+                          <span className="font-semibold">{product.occasion}</span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-3 text-muted-foreground text-sm">
+                        Perfect occasion or event where this jewelry piece would be most suitable.
+                      </AccordionContent>
+                    </AccordionItem>
                   )}
-                  <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg border border-primary/10">
-                    <span className="text-sm text-muted-foreground font-medium">Category</span>
-                    <span className="font-semibold capitalize">{product.category}</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg border border-primary/10">
-                    <span className="text-sm text-muted-foreground font-medium">Availability</span>
-                    <span className={`font-semibold ${product.inStock ? 'text-green-600' : 'text-red-600'}`}>
-                      {product.inStock ? '✓ In Stock' : '✗ Out of Stock'}
-                    </span>
-                  </div>
-                </div>
+
+                  <AccordionItem value="reference" className="border rounded-lg px-4 bg-secondary/20">
+                    <AccordionTrigger className="hover:no-underline py-3">
+                      <div className="flex items-center justify-between w-full pr-4">
+                        <span className="text-sm font-medium">Picture Reference</span>
+                        <span className="font-semibold text-primary">View Images</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-3 text-muted-foreground text-sm">
+                      Product images are for reference only. Actual product may vary slightly in appearance.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
 
               {/* Tags */}
@@ -261,6 +350,14 @@ export default function ProductDetails() {
               )}
             </div>
           </div>
+        </div>
+
+        {/* Similar Products Section */}
+        <div className="container mx-auto px-4 pb-12">
+          <SimilarProducts
+            currentProductId={product._id}
+            category={product.category}
+          />
         </div>
       </div>
       </div>

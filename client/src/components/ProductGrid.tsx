@@ -7,6 +7,7 @@ import type { Product } from "@shared/schema";
 import { useMemo } from "react";
 import type { FilterOptions } from "@/components/FilterDrawer";
 import { useLocation } from "wouter";
+import ShareButton from "@/components/ShareButton";
 
 interface ProductGridProps {
   selectedCategory: string;
@@ -221,15 +222,18 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
                           </p>
                         )}
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="p-2 hover:bg-accent rounded-full transition-colors"
-                        aria-label="Add to favorites"
-                        data-testid={`button-favorite-${product._id}`}
-                      >
-                        <Heart className="h-5 w-5 text-muted-foreground" />
-                      </Button>
+                      <div className="flex items-center gap-1">
+                        <ShareButton
+                          productName={product.name}
+                          productUrl={`/product/${product._id}`}
+                          productImage={product.imageUrl}
+                        />
+                        <ShareButton
+                          productName={product.name}
+                          productUrl={`/product/${product._id}`}
+                          variant="icon"
+                        />
+                      </div>
                     </div>
                   </CardContent>
                 </Card>

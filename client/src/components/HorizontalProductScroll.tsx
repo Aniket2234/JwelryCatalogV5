@@ -27,8 +27,8 @@ export default function HorizontalProductScroll({
     if (!container) return;
 
     let scrollPosition = 0;
-    const scrollSpeed = 1; // pixels per interval
-    const scrollInterval = 30; // milliseconds
+    const scrollSpeed = 2; // pixels per interval (increased from 1 to 2 for faster scroll)
+    const scrollInterval = 25; // milliseconds (decreased from 30 to 25 for faster scroll)
 
     const startAutoScroll = () => {
       scrollIntervalRef.current = setInterval(() => {
@@ -111,12 +111,12 @@ export default function HorizontalProductScroll({
               {products.map((product) => (
                 <Card
                   key={product._id}
-                  className="flex-shrink-0 w-64 cursor-pointer hover:shadow-lg transition-shadow duration-300 snap-start"
+                  className="flex-shrink-0 w-56 cursor-pointer hover:shadow-lg transition-shadow duration-300 snap-start"
                   onClick={() => setLocation(`/product/${product._id}`)}
                   data-testid={`product-card-${product._id}`}
                 >
                   <CardContent className="p-0">
-                    <div className="relative overflow-hidden aspect-square">
+                    <div className="relative overflow-hidden aspect-[3/4]">
                       <img
                         src={product.imageUrl}
                         alt={product.name}
