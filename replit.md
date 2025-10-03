@@ -6,6 +6,35 @@ This is a modern jewelry catalog web application built with React and Express. T
 
 ## Recent Updates (October 2025)
 
+### Latest Features (October 3, 2025)
+
+#### Google Review System
+- **5-Star Rating Widget**: Added interactive star rating system on the Welcome page
+- **Placement**: Located below the "Explore Catalog" button
+- **Functionality**: Stars fill with yellow color on hover/click and redirect to Google Review page
+- **Configuration Required**: Update the `googleReviewUrl` in `/client/src/pages/Welcome.tsx` with your actual Google Review link
+  - Get your Google Place ID from Google Business Profile
+  - Replace `YOUR_PLACE_ID` in the URL with your actual Place ID
+
+#### Product Details Enhancements
+- **Full Image Display**: Product images now fill the entire image box (changed from contain to cover)
+- **Collapsible Details**: Product specifications accordion now uses single-select mode - only one detail section open at a time for better UX
+
+#### WhatsApp Integration
+- **Header Icon**: Added WhatsApp icon in header for quick customer contact
+- **Phone Number**: Integrated +91 75072 19775 for direct WhatsApp chat
+- **Consistent Links**: Updated all WhatsApp links throughout the app (Welcome, Header, SideDrawer)
+
+#### UI/UX Improvements
+- **Social Media Icons**: All social media icons now use authentic brand colors:
+  - Instagram: Purple-pink-orange gradient
+  - WhatsApp: Official green (#25D366)
+  - YouTube: Red (#FF0000)
+- **Curved Drawer Animation**: Hamburger menu opens with smooth curved animation effect using cubic-bezier easing
+- **Product Sharing**: Enhanced sharing options with Instagram, Facebook, and WhatsApp integration
+
+## Recent Updates (October 2025)
+
 ### Social Media Integration
 - **Welcome Page**: Added Instagram, WhatsApp, and YouTube social media icons above the "Explore Catalog" button with glassmorphism design
 - **Header**: Integrated WhatsApp quick-access icon in the navigation header for instant customer communication

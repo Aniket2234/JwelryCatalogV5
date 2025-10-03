@@ -186,3 +186,18 @@
   background-color: hsl(var(--primary));
   transform: scale(1.2);
 }
+
+/* Curved Side Drawer Animation */
+.drawer-curved {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.drawer-curved.drawer-open {
+  transform: translateX(0);
+}
+
+.drawer-curved.drawer-closed {
+  transform: translateX(-100%);
+}

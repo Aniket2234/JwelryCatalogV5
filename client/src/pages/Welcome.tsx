@@ -148,6 +148,7 @@ import { ArrowRight, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
+import GoogleReview from "@/components/GoogleReview";
 
 interface RatesData {
   gold_24k: string;
@@ -297,7 +298,7 @@ export default function Welcome() {
               </svg>
             </a>
             <a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/917507219775"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative p-3 bg-[#25D366] backdrop-blur-sm rounded-full hover:scale-110 transition-all duration-300"
@@ -339,6 +340,9 @@ export default function Welcome() {
               <ArrowRight className="ml-3 w-6 h-6 transition-transform duration-300 group-hover:scale-125 group-hover:translate-x-1" />
             </Button>
           </motion.div>
+
+          {/* Google Review Section */}
+          <GoogleReview googleReviewUrl="https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID" />
         </div>
       </motion.div>
     </motion.div>

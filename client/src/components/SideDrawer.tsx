@@ -37,8 +37,8 @@ export default function SideDrawer({
 
   return (
     <div
-      className={`fixed inset-y-0 left-0 z-50 w-80 bg-background shadow-2xl transform transition-transform duration-300 ${
-        isMenuOpen ? "translate-x-0" : "-translate-x-full"
+      className={`fixed inset-y-0 left-0 z-50 w-80 bg-background shadow-2xl drawer-curved ${
+        isMenuOpen ? "drawer-open" : "drawer-closed"
       }`}
       data-testid="drawer-side-menu"
     >
@@ -183,7 +183,7 @@ export default function SideDrawer({
               </svg>
             </a>
             <a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/917507219775"
               target="_blank"
               rel="noopener noreferrer"
               className="group p-3 bg-[#25D366] border border-transparent rounded-full hover:scale-110 transition-all duration-300"

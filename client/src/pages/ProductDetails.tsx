@@ -136,11 +136,11 @@ export default function ProductDetails() {
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* Image Section */}
           <div className="space-y-4">
-            <div className="relative bg-muted rounded-lg overflow-hidden aspect-square flex items-center justify-center">
+            <div className="relative bg-muted rounded-lg overflow-hidden aspect-square">
               <img
                 src={allImages[selectedImageIndex]}
                 alt={product.name}
-                className="w-full h-full object-contain p-4"
+                className="w-full h-full object-cover"
                 data-testid="product-main-image"
               />
               
@@ -225,7 +225,7 @@ export default function ProductDetails() {
               {/* Product Specifications - Accordion Style */}
               <div className="mb-6">
                 <h3 className="font-semibold text-lg border-b pb-2 mb-4">Product Specifications</h3>
-                <Accordion type="multiple" className="space-y-2" defaultValue={["availability"]}>
+                <Accordion type="single" collapsible className="space-y-2" defaultValue="availability">
                   <AccordionItem value="availability" className="border rounded-lg px-4 bg-secondary/20">
                     <AccordionTrigger className="hover:no-underline py-3">
                       <div className="flex items-center justify-between w-full pr-4">
