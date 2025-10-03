@@ -134,14 +134,6 @@
 //     </section>
 //   );
 // }
-
-
-
-
-
-
-
-
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -160,11 +152,37 @@ export default function VideoCarousel() {
 
   // Define videos and captions (static)
   const videos: CarouselVideo[] = [
-    { _id: "1", title: "Ring", subtitle: "Elegant handcrafted design", buttonText: "Shop Now", videoSrc: "/v1.mp4" },
-    { _id: "2", title: "Bangles", subtitle: "Perfect for every occasion", buttonText: "Shop Now", videoSrc: "/v4.mp4" },
-    { _id: "3", title: "Pendant", subtitle: "Unique modern style", buttonText: "Shop Now", videoSrc: "/v3.mp4" },
-    { _id: "4", title: "braccelets", subtitle: "Timeless luxury jewelry", buttonText: "Shop Now", videoSrc: "/v5.mp4" },
-    { _id: "5", title: "Special Collection", subtitle: "Discover our finest picks", buttonText: "Explore", videoSrc: "/VID.mp4" },
+    {
+      _id: "1",
+      title: "Ring",
+      subtitle: "Elegant handcrafted design",
+      videoSrc: "/v1.mp4",
+    },
+    {
+      _id: "2",
+      title: "Bangles",
+      subtitle: "Perfect for every occasion",
+      videoSrc: "/v4.mp4",
+    },
+    {
+      _id: "3",
+      title: "Pendant",
+      subtitle: "Unique modern style",
+      videoSrc: "/v3.mp4",
+    },
+    {
+      _id: "4",
+      title: "Bracelets",
+      subtitle: "Timeless luxury jewelry",
+      videoSrc: "/v5.mp4",
+    },
+    {
+      _id: "5",
+      title: "Special Collection",
+      subtitle: "Discover our finest picks",
+      buttonText: "Explore Catalog",
+      videoSrc: "/VID.mp4",
+    },
   ];
 
   const goToSlide = (index: number) => {
@@ -195,55 +213,72 @@ export default function VideoCarousel() {
       <div className="container mx-auto px-4 py-8">
         <div className="relative rounded-xl overflow-hidden shadow-lg">
           <div className="relative h-64 md:h-96 lg:h-[500px]">
-            {videos.map((video, index) => (
-              <div
-                key={video._id}
-                className={`absolute inset-0 transition-opacity duration-700 ${
-                  index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
-                }`}
-                data-testid={`carousel-slide-${index}`}
-              >
-                <video
-                  ref={(el) => (videoRefs.current[index] = el)}
-                  src={video.videoSrc}
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                  onEnded={nextSlide}
-                />
+            {videos.map((video, index) => {
+              // ✅ 1–4: text at bottom | 5th: center
+              const isBottomAligned = index < 4;
 
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
-                  <div className="px-8 md:px-16 max-w-2xl">
-                    <h2
-                      className="font-serif text-3xl md:text-5xl font-bold text-white mb-4"
-                      data-testid={`text-carousel-title-${index}`}
+              return (
+                <div
+                  key={video._id}
+                  className={`absolute inset-0 transition-opacity duration-700 ${
+                    index === currentSlide
+                      ? "opacity-100 z-10"
+                      : "opacity-0 z-0"
+                  }`}
+                  data-testid={`carousel-slide-${index}`}
+                >
+                  <video
+                    ref={(el) => (videoRefs.current[index] = el)}
+                    src={video.videoSrc}
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                    onEnded={nextSlide}
+                  />
+
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex ${
+                      isBottomAligned
+                        ? "items-end"
+                        : "items-center justify-center"
+                    }`}
+                  >
+                    <div
+                      className={`px-8 md:px-16 max-w-2xl ${
+                        isBottomAligned ? "pb-8 text-left" : "text-center"
+                      }`}
                     >
-                      {video.title}
-                    </h2>
-                    {video.subtitle && (
-                      <p
-                        className="text-white/90 text-lg mb-6"
-                        data-testid={`text-carousel-subtitle-${index}`}
+                      <h2
+                        className="font-serif text-3xl md:text-5xl font-bold text-white mb-4"
+                        data-testid={`text-carousel-title-${index}`}
                       >
-                        {video.subtitle}
-                      </p>
-                    )}
-                    {video.buttonText && (
-                      <Button
-                        className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-colors"
-                        data-testid={`button-carousel-${index}`}
-                      >
-                        {video.buttonText}
-                      </Button>
-                    )}
+                        {video.title}
+                      </h2>
+                      {video.subtitle && (
+                        <p
+                          className="text-white/90 text-lg mb-6"
+                          data-testid={`text-carousel-subtitle-${index}`}
+                        >
+                          {video.subtitle}
+                        </p>
+                      )}
+                      {video.buttonText && (
+                        <Button
+                          className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-colors"
+                          data-testid={`button-carousel-${index}`}
+                        >
+                          {video.buttonText}
+                        </Button>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* Navigation Dots */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+          {/* Navigation Dots - bottom right */}
+          <div className="absolute bottom-3 right-4 flex gap-2 z-10">
             {videos.map((_, index) => (
               <button
                 key={index}
@@ -285,5 +320,3 @@ export default function VideoCarousel() {
     </section>
   );
 }
-
-
