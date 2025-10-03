@@ -42,7 +42,7 @@ export default function ProductDetails() {
   };
 
   const handleBack = () => {
-    setLocation("/catalog");
+    window.history.back();
   };
 
   const handleCategorySelect = (category: string) => {

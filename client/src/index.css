@@ -201,3 +201,30 @@
 .drawer-curved.drawer-closed {
   transform: translateX(-100%);
 }
+
+/* Golden Scrolling Lines for Category Section */
+@keyframes scrollLine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes scrollLineReverse {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll-line {
+  animation: scrollLine 3s linear infinite;
+}
+
+.animate-scroll-line-reverse {
+  animation: scrollLineReverse 3s linear infinite;
+}

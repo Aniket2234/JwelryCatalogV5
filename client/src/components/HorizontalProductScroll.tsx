@@ -80,7 +80,7 @@ export default function HorizontalProductScroll({
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <h2
-              className="text-2xl md:text-3xl font-serif text-primary font-bold border-b-2 border-primary pb-2"
+              className="text-3xl md:text-4xl font-serif font-bold pb-2 bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-600 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(217,119,6,0.3)] tracking-wide"
               data-testid={`section-title-${title.toLowerCase().replace(/\s+/g, '-')}`}
             >
               {title}

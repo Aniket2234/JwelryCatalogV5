@@ -7,14 +7,8 @@ interface GoogleReviewProps {
 }
 
 export default function GoogleReview({
-  googleReviewUrl = "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID",
+  googleReviewUrl = "https://g.page/r/CQ_kIy8zvyEaEBM/review",
 }: GoogleReviewProps) {
-  // To get your Google Place ID and review URL:
-  // 1. Go to Google Maps and search for your business
-  // 2. Click on your business listing
-  // 3. Scroll down and click "Share" → "Share review form"
-  // 4. Copy the URL and replace YOUR_PLACE_ID in the default URL above
-  // Or pass a custom googleReviewUrl prop to this component
   const [hoveredStar, setHoveredStar] = useState<number>(0);
   const [selectedStar, setSelectedStar] = useState<number>(0);
 

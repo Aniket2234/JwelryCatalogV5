@@ -36,7 +36,13 @@ export default function CategoryGrid({
   }
 
   return (
-    <section className="py-6 bg-white">
+    <section className="py-6 bg-white relative overflow-hidden">
+      {/* Top Golden Scrolling Line */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-600 to-transparent animate-scroll-line"></div>
+      
+      {/* Bottom Golden Scrolling Line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-600 to-transparent animate-scroll-line-reverse"></div>
+      
       <div className="container mx-auto px-4">
         <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4">
           {categories.map((category) => (

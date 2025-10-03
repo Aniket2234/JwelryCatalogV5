@@ -342,7 +342,7 @@ export default function Welcome() {
           </motion.div>
 
           {/* Google Review Section */}
-          <GoogleReview googleReviewUrl="https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID" />
+          <GoogleReview googleReviewUrl="https://g.page/r/CQ_kIy8zvyEaEBM/review" />
         </div>
       </motion.div>
     </motion.div>
