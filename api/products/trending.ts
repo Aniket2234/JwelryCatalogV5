@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse} from "@vercel/node";
-import { getDatabase } from "../_lib/mongodb";
-import { MongoStorage } from "../_lib/storage";
+import { getDatabase } from "../_lib/mongodb.js";
+import { MongoStorage } from "../_lib/storage.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {

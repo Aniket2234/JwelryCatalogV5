@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { fetchIBJARates } from "../_lib/rates-scraper";
+import { fetchIBJARates } from "../_lib/rates-scraper.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
