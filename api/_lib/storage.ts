@@ -47,9 +47,12 @@ export class MongoStorage {
     const result = await this.db
       .collection("categories")
       .findOneAndUpdate({ slug }, { $set: data }, { returnDocument: "after" });
+    if (!result) {
+      throw new Error("Category not found");
+    }
     return {
       ...result,
-      _id: objectIdToString(result!._id),
+      _id: objectIdToString(result._id),
     };
   }
 
@@ -139,9 +142,12 @@ export class MongoStorage {
     const result = await this.db
       .collection("shop_info")
       .findOneAndUpdate({}, { $set: data }, { upsert: true, returnDocument: "after" });
+    if (!result) {
+      throw new Error("Shop info not found");
+    }
     return {
       ...result,
-      _id: objectIdToString(result!._id),
+      _id: objectIdToString(result._id),
     };
   }
 }
