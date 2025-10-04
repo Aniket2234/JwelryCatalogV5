@@ -1,0 +1,270 @@
+index-CWNazm8C.js:48 🔍 API GET /api/rates
+/api/rates:1  Failed to load resource: the server responded with a status of 500 ()
+index-CWNazm8C.js:48 ❌ API GET /api/rates - 500 (670ms)
+(anonymous) @ index-CWNazm8C.js:48
+index-CWNazm8C.js:48 ❌ API GET /api/rates - Failed (670ms) Error: 500: A server error has occurred
+
+FUNCTION_INVOCATION_FAILED
+
+bom1::b5jt8-1759597091619-2a0cece0f963
+
+    at YT (index-CWNazm8C.js:48:40189)
+    at async index-CWNazm8C.js:48:40663
+(anonymous) @ index-CWNazm8C.js:48
+/favicon.ico:1  Failed to load resource: the server responded with a status of 404 ()
+index-CWNazm8C.js:48 🔍 API GET /api/categories
+index-CWNazm8C.js:48 🔍 API GET /api/shop-info
+index-CWNazm8C.js:48 🔍 API GET /api/products/new-arrivals
+index-CWNazm8C.js:48 🔍 API GET /api/products/trending
+index-CWNazm8C.js:48  GET https://jwelry-catalog-v5-ak9b0q2uk-aniket-ranes-projects.vercel.app/api/products/new-arrivals 500 (Internal Server Error)
+(anonymous) @ index-CWNazm8C.js:48
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48 ❌ API GET /api/products/new-arrivals - 500 (469ms)
+(anonymous) @ index-CWNazm8C.js:48
+await in (anonymous)
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48 ❌ API GET /api/products/new-arrivals - Failed (470ms) Error: 500: A server error has occurred
+
+FUNCTION_INVOCATION_FAILED
+
+bom1::w8vqj-1759597115283-4e142a92d261
+
+    at YT (index-CWNazm8C.js:48:40189)
+    at async index-CWNazm8C.js:48:40663
+(anonymous) @ index-CWNazm8C.js:48
+await in (anonymous)
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48  GET https://jwelry-catalog-v5-ak9b0q2uk-aniket-ranes-projects.vercel.app/api/products/trending 500 (Internal Server Error)
+(anonymous) @ index-CWNazm8C.js:48
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48 ❌ API GET /api/products/trending - 500 (474ms)
+(anonymous) @ index-CWNazm8C.js:48
+await in (anonymous)
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48  GET https://jwelry-catalog-v5-ak9b0q2uk-aniket-ranes-projects.vercel.app/api/categories 500 (Internal Server Error)
+(anonymous) @ index-CWNazm8C.js:48
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48 ❌ API GET /api/categories - 500 (477ms)
+(anonymous) @ index-CWNazm8C.js:48
+await in (anonymous)
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48 ❌ API GET /api/products/trending - Failed (475ms) Error: 500: A server error has occurred
+
+FUNCTION_INVOCATION_FAILED
+
+bom1::s9nsf-1759597115284-62ae3db530cd
+
+    at YT (index-CWNazm8C.js:48:40189)
+    at async index-CWNazm8C.js:48:40663
+(anonymous) @ index-CWNazm8C.js:48
+await in (anonymous)
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48 ❌ API GET /api/categories - Failed (478ms) Error: 500: A server error has occurred
+
+FUNCTION_INVOCATION_FAILED
+
+bom1::bwl2z-1759597115282-56a4c1a6b98e
+
+    at YT (index-CWNazm8C.js:48:40189)
+    at async index-CWNazm8C.js:48:40663
+(anonymous) @ index-CWNazm8C.js:48
+await in (anonymous)
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48  GET https://jwelry-catalog-v5-ak9b0q2uk-aniket-ranes-projects.vercel.app/api/shop-info 500 (Internal Server Error)
+(anonymous) @ index-CWNazm8C.js:48
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48 ❌ API GET /api/shop-info - 500 (945ms)
+(anonymous) @ index-CWNazm8C.js:48
+await in (anonymous)
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
+index-CWNazm8C.js:48 ❌ API GET /api/shop-info - Failed (945ms) Error: 500: A server error has occurred
+
+FUNCTION_INVOCATION_FAILED
+
+bom1::w8vqj-1759597115283-b1b360c338ba
+
+    at YT (index-CWNazm8C.js:48:40189)
+    at async index-CWNazm8C.js:48:40663
+(anonymous) @ index-CWNazm8C.js:48
+await in (anonymous)
+s @ index-CWNazm8C.js:48
+w @ index-CWNazm8C.js:48
+start @ index-CWNazm8C.js:48
+fetch @ index-CWNazm8C.js:48
+_s @ index-CWNazm8C.js:48
+onSubscribe @ index-CWNazm8C.js:48
+subscribe @ index-CWNazm8C.js:48
+(anonymous) @ index-CWNazm8C.js:48
+V0 @ index-CWNazm8C.js:38
+Kl @ index-CWNazm8C.js:40
+ko @ index-CWNazm8C.js:40
+EE @ index-CWNazm8C.js:40
+Pr @ index-CWNazm8C.js:40
+Km @ index-CWNazm8C.js:40
+xr @ index-CWNazm8C.js:38
+(anonymous) @ index-CWNazm8C.js:40
