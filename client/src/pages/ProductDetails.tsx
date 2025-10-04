@@ -183,17 +183,29 @@ export default function ProductDetails() {
 
           {/* Details Section */}
           <div className="flex flex-col">
-            <div className="flex-1 text-center">
-              <div className="mb-6">
-                <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
+            <div className="flex-1">
+              <div className="flex items-start justify-between mb-2">
+                <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold flex-1">
                   {product.name}
                 </h1>
-                <p className="text-sm text-muted-foreground uppercase tracking-wider">
-                  {product.category}
-                </p>
+                <div className="flex items-center gap-2 ml-4">
+                  <ShareButton
+                    productName={product.name}
+                    productUrl={`/product/${product._id}`}
+                    productImage={product.imageUrl}
+                  />
+                  <ShareButton
+                    productName={product.name}
+                    productUrl={`/product/${product._id}`}
+                    variant="icon"
+                  />
+                </div>
               </div>
+              <p className="text-sm text-muted-foreground mb-4 capitalize">
+                {product.category}
+              </p>
 
-              <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="flex items-baseline gap-3 mb-6">
                 <p className="font-bold text-4xl text-primary">
                   ₹{product.price.toLocaleString()}
                 </p>
@@ -204,28 +216,15 @@ export default function ProductDetails() {
                 )}
               </div>
 
-              <div className="mb-8 max-w-2xl mx-auto">
-                <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+              <div className="prose max-w-none mb-6">
+                <p className="text-muted-foreground leading-relaxed text-lg">
                   {product.description}
                 </p>
               </div>
 
-              <div className="flex items-center justify-center gap-3 mb-8">
-                <ShareButton
-                  productName={product.name}
-                  productUrl={`/product/${product._id}`}
-                  productImage={product.imageUrl}
-                />
-                <ShareButton
-                  productName={product.name}
-                  productUrl={`/product/${product._id}`}
-                  variant="icon"
-                />
-              </div>
-
               {/* Product Specifications - Accordion Style */}
               <div className="mb-6">
-                <h3 className="font-serif text-2xl font-semibold mb-6">Product Specifications</h3>
+                <h3 className="font-semibold text-lg border-b pb-2 mb-4">Product Specifications</h3>
                 <Accordion type="single" collapsible className="space-y-2" defaultValue="availability">
                   <AccordionItem value="availability" className="border rounded-lg px-4 bg-secondary/20">
                     <AccordionTrigger className="hover:no-underline py-3">
