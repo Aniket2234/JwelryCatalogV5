@@ -228,7 +228,7 @@ export default function Welcome() {
             <div className="flex items-center justify-center gap-2 mb-3">
               <TrendingUp className="w-5 h-5 text-primary" />
               <h3 className="text-white font-semibold text-sm md:text-base">
-                Live IBJA Rates (India)
+                Live Rates (India)
               </h3>
             </div>
 
@@ -258,7 +258,7 @@ export default function Welcome() {
                 </div>
                 <div className="text-center" data-testid="rate-silver">
                   <p className="text-xs md:text-sm text-white/80 mb-1">
-                    Silver (1kg)
+                    Silver (10g)
                   </p>
                   <p className="text-lg md:text-2xl font-bold text-white">
                     {rates?.silver === "N/A"
@@ -269,7 +269,7 @@ export default function Welcome() {
               </div>
             )}
             <p className="text-xs text-white/60 text-center mt-3">
-              Rates updated hourly from IBJA.co
+              Rates updated hourly from Moneycontrol.com
               {rates?.isCached && rates?.cacheAge
                 ? ` (cached ${rates.cacheAge} min ago)`
                 : ""}

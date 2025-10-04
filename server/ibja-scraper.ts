@@ -14,6 +14,64 @@ let lastFetch: Date | null = null;
 
 const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
 
+async function fetchGoldRatesFromMoneycontrol(): Promise<{ gold24k: number; gold22k: number }> {
+  try {
+    console.log('Fetching gold rates from Moneycontrol...');
+    const response = await fetch('https://www.moneycontrol.com/news/gold-rates-today/');
+    const html = await response.text();
+    const $ = cheerio.load(html);
+
+    const pageText = $('body').text();
+    
+    // Look for "GOLD RATE TODAY ₹ 115,400" - this is 24K per 10 grams
+    const gold24kMatch = pageText.match(/GOLD\s+RATE\s+TODAY[^\d]*?₹\s*([\d,]+)/i);
+    
+    let gold24kPer10g = 0;
+    let gold22kPer10g = 0;
+    
+    if (gold24kMatch && gold24kMatch[1]) {
+      gold24kPer10g = parseInt(gold24kMatch[1].replace(/,/g, ''));
+      if (gold24kPer10g > 10000 && gold24kPer10g < 200000) { // Sanity check
+        console.log('Found 24K gold rate from Moneycontrol:', gold24kPer10g, 'per 10g');
+      } else {
+        gold24kPer10g = 0;
+      }
+    }
+
+    // Look for 22K in the table: "10 Gram ₹ 109,900"
+    // Pattern: Look for the "22 Carat Gold Rate" section with "10 Gram" specifically
+    // Use more specific regex to avoid matching 1 Gram price
+    const gold22kTableMatch = pageText.match(/22\s+Carat[^\d]*10\s+Gram[^\d]*₹\s*([\d,]+)/i);
+    
+    if (gold22kTableMatch && gold22kTableMatch[1]) {
+      const rate = parseInt(gold22kTableMatch[1].replace(/,/g, ''));
+      // Sanity check: 22K 10g should be around 100,000-120,000
+      if (rate > 50000 && rate < 150000) {
+        gold22kPer10g = rate;
+        console.log('Found 22K gold rate from table:', gold22kPer10g, 'per 10g');
+      }
+    }
+    
+    // If the above didn't work, try a different pattern
+    if (gold22kPer10g === 0) {
+      // Look for the table structure more broadly
+      const tableSection = pageText.match(/22\s+Carat\s+Gold\s+Rate[^]*?10\s+Gram[^\d]*₹\s*([\d,]+)/i);
+      if (tableSection && tableSection[1]) {
+        const rate = parseInt(tableSection[1].replace(/,/g, ''));
+        if (rate > 50000 && rate < 150000) {
+          gold22kPer10g = rate;
+          console.log('Found 22K gold rate from alternative pattern:', gold22kPer10g, 'per 10g');
+        }
+      }
+    }
+
+    return { gold24k: gold24kPer10g, gold22k: gold22kPer10g };
+  } catch (error) {
+    console.error('Error fetching gold rates from Moneycontrol:', error);
+    return { gold24k: 0, gold22k: 0 };
+  }
+}
+
 async function fetchSilverRateFromMoneycontrol(): Promise<number> {
   try {
     console.log('Fetching silver rates from Moneycontrol...');
@@ -21,42 +79,37 @@ async function fetchSilverRateFromMoneycontrol(): Promise<number> {
     const html = await response.text();
     const $ = cheerio.load(html);
 
-    // Look for the silver rate in the page
     const pageText = $('body').text();
     
-    // Try to find the main silver rate display - usually shows per kg
-    // Pattern: "SILVER RATE TODAY" followed by price, which is typically per kg
-    // The format is: "SILVER RATE TODAY ₹ 165,000 2.48%"
+    // Try to find the main silver rate display per kg
     const silverRateMatch = pageText.match(/SILVER\s+RATE\s+TODAY[^\d]*?₹\s*([\d,]+)/i);
     
     if (silverRateMatch && silverRateMatch[1]) {
       const ratePerKg = parseInt(silverRateMatch[1].replace(/,/g, ''));
-      // The main display shows per kg (typically 150,000-170,000 range)
       if (ratePerKg > 10000) { // Sanity check - per kg should be > 10,000
-        console.log('Found silver rate from Moneycontrol:', ratePerKg, 'per kg');
-        return ratePerKg;
+        const ratePer10g = Math.round(ratePerKg / 100); // Convert kg to 10g
+        console.log('Found silver rate from Moneycontrol:', ratePerKg, 'per kg →', ratePer10g, 'per 10g');
+        return ratePer10g;
       }
     }
 
-    // Alternative: Look for the table with "1 Kg" and the corresponding price
-    // This is more reliable as it's in a structured table
-    const tableMatch = pageText.match(/1\s+Kg[^₹]*₹\s*([\d,]+)/i);
+    // Alternative: Look for "10 grams" in the table
+    const silver10gMatch = pageText.match(/10\s+[Gg]rams?[^₹]*₹\s*([\d,]+)/i);
     
-    if (tableMatch && tableMatch[1]) {
-      const ratePerKg = parseInt(tableMatch[1].replace(/,/g, ''));
-      console.log('Found silver rate per kg from table:', ratePerKg);
-      return ratePerKg;
+    if (silver10gMatch && silver10gMatch[1]) {
+      const ratePer10g = parseInt(silver10gMatch[1].replace(/,/g, ''));
+      console.log('Found silver rate per 10g from table:', ratePer10g);
+      return ratePer10g;
     }
 
-    // Try another pattern: Look in the rate comparison table
-    // "1 Gram ₹ 165" then multiply by 1000
+    // Try per gram and multiply by 10
     const gramMatch = pageText.match(/1\s+Gram[^₹]*₹\s*([\d,]+)/i);
     
     if (gramMatch && gramMatch[1]) {
       const ratePerGram = parseInt(gramMatch[1].replace(/,/g, ''));
-      const ratePerKg = ratePerGram * 1000;
-      console.log('Found silver rate per gram from table:', ratePerGram, '→ per kg:', ratePerKg);
-      return ratePerKg;
+      const ratePer10g = ratePerGram * 10;
+      console.log('Found silver rate per gram from table:', ratePerGram, '→ per 10g:', ratePer10g);
+      return ratePer10g;
     }
 
     console.log('Could not find silver rate on Moneycontrol');
@@ -80,75 +133,23 @@ export async function fetchIBJARates(): Promise<RatesData> {
   }
 
   try {
-    console.log('===== Fetching fresh rates... =====');
+    console.log('===== Fetching fresh rates from Moneycontrol... =====');
     
-    // Fetch gold rates from IBJA
-    const ibjaResponse = await fetch('https://ibja.co/');
-    console.log('IBJA fetch response status:', ibjaResponse.status);
-    const ibjaHtml = await ibjaResponse.text();
-    console.log('IBJA HTML length:', ibjaHtml.length);
-    const $ = cheerio.load(ibjaHtml);
-
-    // Initialize rates with default values
-    let gold24kPerGram = 0;
-    let gold22kPerGram = 0;
-
-    // Try to find rates in the HTML text
-    const pageText = $('body').text();
-    
-    // Log a snippet of the page text for debugging
-    console.log('IBJA page text snippet length:', pageText.length);
-    
-    // Look for the rates section specifically
-    const ratesSection = pageText.match(/IBJA'?s? indicative[^]*?(?=\n\n|\*|$)/i);
-    if (ratesSection) {
-      console.log('Found rates section:', ratesSection[0].substring(0, 500));
-    }
-    
-    // Match "Fine Gold (999): ₹ 11733" pattern - try multiple patterns
-    let gold999Match = pageText.match(/Fine Gold \(999\)[:\s]*₹\s*([\d,]+)/i);
-    if (!gold999Match) {
-      gold999Match = pageText.match(/Fine Gold[^₹]*₹\s*([\d,]+)/i);
-    }
-    if (gold999Match && gold999Match[1]) {
-      gold24kPerGram = parseInt(gold999Match[1].replace(/,/g, ''));
-      console.log('Found Fine Gold (999):', gold24kPerGram);
-    } else {
-      console.log('Could not find Fine Gold (999) in page');
-    }
-    
-    // Match "22 KT: ₹ 11452" pattern
-    let gold22Match = pageText.match(/22 KT[:\s]*₹\s*([\d,]+)/i);
-    if (!gold22Match) {
-      gold22Match = pageText.match(/22\s*KT[^₹]*₹\s*([\d,]+)/i);
-    }
-    if (gold22Match && gold22Match[1]) {
-      gold22kPerGram = parseInt(gold22Match[1].replace(/,/g, ''));
-      console.log('Found 22 KT:', gold22kPerGram);
-    } else {
-      console.log('Could not find 22 KT in page');
-    }
-
-    // Calculate per 10g for gold
-    const gold24kPer10g = gold24kPerGram * 10;
-    const gold22kPer10g = gold22kPerGram * 10;
-
-    // Fetch silver rates from Moneycontrol
-    const silverPerKg = await fetchSilverRateFromMoneycontrol();
+    // Fetch both gold and silver rates from Moneycontrol
+    const goldRates = await fetchGoldRatesFromMoneycontrol();
+    const silverPer10g = await fetchSilverRateFromMoneycontrol();
 
     console.log('Scraped values:', {
-      gold24kPerGram,
-      gold22kPerGram,
-      silverPerKg,
-      gold24kPer10g,
-      gold22kPer10g
+      gold24kPer10g: goldRates.gold24k,
+      gold22kPer10g: goldRates.gold22k,
+      silverPer10g
     });
 
-    // Format the response
+    // Format the response (all per 10 grams)
     const rates: RatesData = {
-      gold_24k: gold24kPer10g > 0 ? `₹ ${gold24kPer10g.toLocaleString('en-IN')}` : 'N/A',
-      gold_22k: gold22kPer10g > 0 ? `₹ ${gold22kPer10g.toLocaleString('en-IN')}` : 'N/A',
-      silver: silverPerKg > 0 ? `₹ ${silverPerKg.toLocaleString('en-IN')}` : 'N/A',
+      gold_24k: goldRates.gold24k > 0 ? `₹ ${goldRates.gold24k.toLocaleString('en-IN')}` : 'N/A',
+      gold_22k: goldRates.gold22k > 0 ? `₹ ${goldRates.gold22k.toLocaleString('en-IN')}` : 'N/A',
+      silver: silverPer10g > 0 ? `₹ ${silverPer10g.toLocaleString('en-IN')}` : 'N/A',
       lastUpdated: new Date(),
       isCached: false,
       cacheAge: 0
