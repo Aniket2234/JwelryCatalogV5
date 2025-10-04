@@ -1,0 +1,137 @@
+22:21:50.236 Running build in Washington, D.C., USA (East) – iad1
+22:21:50.236 Build machine configuration: 2 cores, 8 GB
+22:21:50.270 Cloning github.com/Aniket2234/JwelryCatalogV5 (Branch: main, Commit: bc6d5d6)
+22:21:50.403 Previous build caches not available
+22:21:51.513 Cloning completed: 1.243s
+22:21:52.038 Running "vercel build"
+22:21:52.425 Vercel CLI 48.2.0
+22:21:53.221 Warning: Due to "engines": { "node": "20.x" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "20.x" will be used instead. Learn More: http://vercel.link/node-version
+22:21:53.227 Running "install" command: `npm install`...
+22:21:58.993 npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+22:21:59.021 npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+22:22:05.262 
+22:22:05.263 added 601 packages, and audited 602 packages in 12s
+22:22:05.263 
+22:22:05.264 87 packages are looking for funding
+22:22:05.264   run `npm fund` for details
+22:22:05.298 
+22:22:05.299 11 vulnerabilities (3 low, 6 moderate, 2 high)
+22:22:05.299 
+22:22:05.299 To address issues that do not require attention, run:
+22:22:05.300   npm audit fix
+22:22:05.300 
+22:22:05.300 To address all issues (including breaking changes), run:
+22:22:05.300   npm audit fix --force
+22:22:05.300 
+22:22:05.300 Run `npm audit` for details.
+22:22:05.950 
+22:22:05.950 > rest-express@1.0.0 build
+22:22:05.951 > vite build
+22:22:05.951 
+22:22:06.228 [36mvite v5.4.20 [32mbuilding for production...[36m[39m
+22:22:06.278 transforming...
+22:22:12.235 [32m✓[39m 2080 modules transformed.
+22:22:12.707 rendering chunks...
+22:22:12.735 computing gzip size...
+22:22:12.781 [2m../dist/public/[22m[32mindex.html                 [39m[1m[2m  1.95 kB[22m[1m[22m[2m │ gzip:   0.74 kB[22m
+22:22:12.782 [2m../dist/public/[22m[2massets/[22m[35mindex-DPvO50jk.css  [39m[1m[2m 90.21 kB[22m[1m[22m[2m │ gzip:  15.11 kB[22m
+22:22:12.782 [2m../dist/public/[22m[2massets/[22m[36mindex-CWNazm8C.js   [39m[1m[33m529.77 kB[39m[22m[2m │ gzip: 165.48 kB[22m
+22:22:12.783 [32m✓ built in 6.53s[39m
+22:22:12.783 [33m
+22:22:12.783 (!) Some chunks are larger than 500 kB after minification. Consider:
+22:22:12.783 - Using dynamic import() to code-split the application
+22:22:12.783 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+22:22:12.784 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+22:22:12.996 Warning: Due to "engines": { "node": "20.x" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "20.x" will be used instead. Learn More: http://vercel.link/node-version
+22:22:13.013 Installing dependencies...
+22:22:14.147 
+22:22:14.147 up to date in 1s
+22:22:14.148 
+22:22:14.148 87 packages are looking for funding
+22:22:14.148   run `npm fund` for details
+22:22:14.162 Running "npm run vercel-build"
+22:22:14.283 
+22:22:14.283 > rest-express@1.0.0 vercel-build
+22:22:14.283 > npm run build
+22:22:14.284 
+22:22:14.405 
+22:22:14.406 > rest-express@1.0.0 build
+22:22:14.406 > vite build
+22:22:14.407 
+22:22:14.652 [36mvite v5.4.20 [32mbuilding for production...[36m[39m
+22:22:14.699 transforming...
+22:22:21.046 [32m✓[39m 2080 modules transformed.
+22:22:21.544 rendering chunks...
+22:22:21.556 computing gzip size...
+22:22:21.574 [2m../dist/public/[22m[32mindex.html                 [39m[1m[2m  1.95 kB[22m[1m[22m[2m │ gzip:   0.74 kB[22m
+22:22:21.574 [2m../dist/public/[22m[2massets/[22m[35mindex-DPvO50jk.css  [39m[1m[2m 90.21 kB[22m[1m[22m[2m │ gzip:  15.11 kB[22m
+22:22:21.574 [2m../dist/public/[22m[2massets/[22m[36mindex-CWNazm8C.js   [39m[1m[33m529.77 kB[39m[22m[2m │ gzip: 165.48 kB[22m
+22:22:21.575 [33m
+22:22:21.575 (!) Some chunks are larger than 500 kB after minification. Consider:
+22:22:21.575 - Using dynamic import() to code-split the application
+22:22:21.575 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+22:22:21.575 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+22:22:21.576 [32m✓ built in 6.90s[39m
+22:22:21.890 Using TypeScript 5.6.3 (local user-provided)
+22:22:26.800 Warning: Due to "engines": { "node": "20.x" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "20.x" will be used instead. Learn More: http://vercel.link/node-version
+22:22:26.814 Running "npm run vercel-build"
+22:22:26.937 
+22:22:26.937 > rest-express@1.0.0 vercel-build
+22:22:26.937 > npm run build
+22:22:26.937 
+22:22:27.057 
+22:22:27.059 > rest-express@1.0.0 build
+22:22:27.059 > vite build
+22:22:27.059 
+22:22:27.302 [36mvite v5.4.20 [32mbuilding for production...[36m[39m
+22:22:27.348 transforming...
+22:22:33.261 [32m✓[39m 2080 modules transformed.
+22:22:33.862 rendering chunks...
+22:22:33.872 computing gzip size...
+22:22:33.889 [2m../dist/public/[22m[32mindex.html                 [39m[1m[2m  1.95 kB[22m[1m[22m[2m │ gzip:   0.74 kB[22m
+22:22:33.890 [2m../dist/public/[22m[2massets/[22m[35mindex-DPvO50jk.css  [39m[1m[2m 90.21 kB[22m[1m[22m[2m │ gzip:  15.11 kB[22m
+22:22:33.890 [2m../dist/public/[22m[2massets/[22m[36mindex-CWNazm8C.js   [39m[1m[33m529.77 kB[39m[22m[2m │ gzip: 165.48 kB[22m
+22:22:33.893 [33m
+22:22:33.893 (!) Some chunks are larger than 500 kB after minification. Consider:
+22:22:33.893 - Using dynamic import() to code-split the application
+22:22:33.893 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+22:22:33.896 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+22:22:33.896 [32m✓ built in 6.57s[39m
+22:22:33.934 Using TypeScript 5.6.3 (local user-provided)
+22:22:34.638 Warning: Due to "engines": { "node": "20.x" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "20.x" will be used instead. Learn More: http://vercel.link/node-version
+22:22:34.652 Running "npm run vercel-build"
+22:22:34.772 
+22:22:34.772 > rest-express@1.0.0 vercel-build
+22:22:34.772 > npm run build
+22:22:34.772 
+22:22:34.892 
+22:22:34.892 > rest-express@1.0.0 build
+22:22:34.892 > vite build
+22:22:34.892 
+22:22:35.132 [36mvite v5.4.20 [32mbuilding for production...[36m[39m
+22:22:35.179 transforming...
+22:22:41.040 [32m✓[39m 2080 modules transformed.
+22:22:41.647 rendering chunks...
+22:22:41.657 computing gzip size...
+22:22:41.675 [2m../dist/public/[22m[32mindex.html                 [39m[1m[2m  1.95 kB[22m[1m[22m[2m │ gzip:   0.74 kB[22m
+22:22:41.676 [2m../dist/public/[22m[2massets/[22m[35mindex-DPvO50jk.css  [39m[1m[2m 90.21 kB[22m[1m[22m[2m │ gzip:  15.11 kB[22m
+22:22:41.676 [2m../dist/public/[22m[2massets/[22m[36mindex-CWNazm8C.js   [39m[1m[33m529.77 kB[39m[22m[2m │ gzip: 165.48 kB[22m
+22:22:41.677 [33m
+22:22:41.677 (!) Some chunks are larger than 500 kB after minification. Consider:
+22:22:41.680 - Using dynamic import() to code-split the application
+22:22:41.680 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+22:22:41.680 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+22:22:41.680 [32m✓ built in 6.52s[39m
+22:22:41.719 Using TypeScript 5.6.3 (local user-provided)
+22:22:42.539 Warning: Due to "engines": { "node": "20.x" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "20.x" will be used instead. Learn More: http://vercel.link/node-version
+22:22:42.554 Running "npm run vercel-build"
+22:22:42.674 
+22:22:42.674 > rest-express@1.0.0 vercel-build
+22:22:42.675 > npm run build
+22:22:42.675 
+22:22:42.797 
+22:22:42.797 > rest-express@1.0.0 build
+22:22:42.798 > vite build
+22:22:42.799 
+22:22:43.047 [36mvite v5.4.20 [32mbuilding for production...[36m[39m
+22:22:43.095 transforming...
