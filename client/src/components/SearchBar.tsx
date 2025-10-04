@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import { Search, SlidersHorizontal, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Search, SlidersHorizontal, X, Mic } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+import { useToast } from "@/hooks/use-toast";
 
 interface SearchBarProps {
   searchQuery: string;
@@ -24,6 +25,9 @@ export default function SearchBar({
   onPriceRangeChange,
 }: SearchBarProps) {
   const [localQuery, setLocalQuery] = useState(searchQuery);
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef<any>(null);
+  const { toast } = useToast();
 
   // Sync local query with parent when it changes externally
   useEffect(() => {
@@ -52,6 +56,61 @@ export default function SearchBar({
     onPriceRangeChange([0, 500000]);
   };
 
+  // Initialize speech recognition
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        recognitionRef.current = new SpeechRecognition();
+        recognitionRef.current.continuous = false;
+        recognitionRef.current.interimResults = false;
+        recognitionRef.current.lang = 'en-IN'; // Indian English
+
+        recognitionRef.current.onresult = (event: any) => {
+          const transcript = event.results[0][0].transcript;
+          setLocalQuery(transcript);
+          onSearchChange(transcript);
+          setIsListening(false);
+        };
+
+        recognitionRef.current.onerror = () => {
+          setIsListening(false);
+          toast({
+            title: "Voice search failed",
+            description: "Please try again or type your search",
+            variant: "destructive",
+          });
+        };
+
+        recognitionRef.current.onend = () => {
+          setIsListening(false);
+        };
+      }
+    }
+  }, [onSearchChange, toast]);
+
+  const handleVoiceSearch = () => {
+    if (recognitionRef.current) {
+      if (isListening) {
+        recognitionRef.current.stop();
+        setIsListening(false);
+      } else {
+        recognitionRef.current.start();
+        setIsListening(true);
+        toast({
+          title: "Listening...",
+          description: "Speak now to search",
+        });
+      }
+    } else {
+      toast({
+        title: "Voice search not supported",
+        description: "Your browser doesn't support voice search",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <>
       <section className="bg-background sticky top-[73px] z-40 border-b border-border shadow-sm">
@@ -63,7 +122,7 @@ export default function SearchBar({
               placeholder="Search for necklaces, rings, earrings..."
               value={localQuery}
               onChange={(e) => setLocalQuery(e.target.value)}
-              className="w-full px-5 py-3 pl-12 pr-24 rounded-full border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+              className="w-full px-5 py-3 pl-12 pr-28 rounded-full border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-all"
               data-testid="input-search"
             />
             {localQuery && (
@@ -71,12 +130,24 @@ export default function SearchBar({
                 variant="ghost"
                 size="icon"
                 onClick={handleClearSearch}
-                className="absolute right-14 top-1/2 -translate-y-1/2 p-2 hover:bg-muted rounded-full transition-colors"
+                className="absolute right-20 top-1/2 -translate-y-1/2 p-2 hover:bg-muted rounded-full transition-colors"
                 aria-label="Clear search"
               >
                 <X className="h-5 w-5 text-muted-foreground" />
               </Button>
             )}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleVoiceSearch}
+              className={`absolute right-11 top-1/2 -translate-y-1/2 p-2 hover:bg-muted rounded-full transition-colors ${
+                isListening ? "bg-red-100 text-red-600" : ""
+              }`}
+              aria-label="Voice search"
+              data-testid="button-voice-search"
+            >
+              <Mic className={`h-5 w-5 ${isListening ? "animate-pulse" : "text-muted-foreground"}`} />
+            </Button>
             <Button
               variant="ghost"
               size="icon"

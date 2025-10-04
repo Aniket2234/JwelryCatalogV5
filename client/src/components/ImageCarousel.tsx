@@ -149,6 +149,8 @@ type CarouselVideo = {
 export default function VideoCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   // Define videos and captions (static)
   const videos: CarouselVideo[] = [
@@ -208,10 +210,35 @@ export default function VideoCarousel() {
     }
   }, [currentSlide]);
 
+  // Handle touch/swipe gestures
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      // Swipe left - next slide
+      nextSlide();
+    }
+    if (touchStartX.current - touchEndX.current < -50) {
+      // Swipe right - previous slide
+      previousSlide();
+    }
+  };
+
   return (
     <section className="bg-background">
       <div className="container mx-auto px-4 py-8">
-        <div className="relative rounded-xl overflow-hidden shadow-lg">
+        <div 
+          className="relative rounded-xl overflow-hidden shadow-lg"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className="relative h-64 md:h-96 lg:h-[500px]">
             {videos.map((video, index) => {
               // ✅ 1–4: text at bottom | 5th: center

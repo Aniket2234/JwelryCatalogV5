@@ -22,53 +22,7 @@ export default function HorizontalProductScroll({
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    let scrollPosition = 0;
-    const scrollSpeed = 2; // pixels per interval (increased from 1 to 2 for faster scroll)
-    const scrollInterval = 25; // milliseconds (decreased from 30 to 25 for faster scroll)
-
-    const startAutoScroll = () => {
-      scrollIntervalRef.current = setInterval(() => {
-        if (!container) return;
-
-        scrollPosition += scrollSpeed;
-        
-        // When we reach the end, smoothly loop back to start
-        if (scrollPosition >= container.scrollWidth - container.clientWidth) {
-          scrollPosition = 0;
-        }
-
-        container.scrollTo({
-          left: scrollPosition,
-          behavior: "smooth",
-        });
-      }, scrollInterval);
-    };
-
-    const stopAutoScroll = () => {
-      if (scrollIntervalRef.current) {
-        clearInterval(scrollIntervalRef.current);
-        scrollIntervalRef.current = null;
-      }
-    };
-
-    // Start auto-scroll
-    startAutoScroll();
-
-    // Pause auto-scroll on hover
-    container.addEventListener("mouseenter", stopAutoScroll);
-    container.addEventListener("mouseleave", startAutoScroll);
-
-    // Cleanup
-    return () => {
-      stopAutoScroll();
-      container.removeEventListener("mouseenter", stopAutoScroll);
-      container.removeEventListener("mouseleave", startAutoScroll);
-    };
-  }, [products]);
+  // Auto-scroll disabled per user request
 
   if (products.length === 0) {
     return null;
