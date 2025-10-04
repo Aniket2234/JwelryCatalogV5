@@ -6,6 +6,14 @@ This is a modern jewelry catalog web application built with React and Express. T
 
 ## Recent Updates (October 2025)
 
+### Latest Features (October 4, 2025)
+
+#### Silver Price Integration
+- **Moneycontrol Integration**: Added silver price scraping from Moneycontrol.com
+- **Live Silver Rates**: Now displays current silver rate per kg alongside gold rates
+- **Dual Source**: Gold from IBJA.co, Silver from Moneycontrol.com
+- **Cache System**: Uses same hourly caching as gold rates for performance
+
 ### Latest Features (October 3, 2025 - Updated)
 
 #### Back Button Navigation Fix
@@ -148,9 +156,10 @@ Preferred communication style: Simple, everyday language.
 - Social media integrations: Facebook, Instagram, Pinterest
 - Contact methods: Phone, email, physical address
 - Google Fonts: Playfair Display, Poppins, Cormorant Garamond for typography
-- **IBJA Rates Integration**: Live gold rates (24K & 22K per 10g) scraped from IBJA.co
+- **Live Rates Integration**: 
+  - **Gold Rates**: 24K & 22K (per 10g) scraped from IBJA.co
+  - **Silver Rates**: Per kg scraped from Moneycontrol.com
   - Hourly caching with cache metadata (isCached, cacheAge)
-  - Silver shows "Not Available" (IBJA doesn't publish silver rates)
   - Error fallback to cached data with proper cache status indication
   - Frontend displays cache age when serving stale data
 
