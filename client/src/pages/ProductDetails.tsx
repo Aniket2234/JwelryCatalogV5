@@ -136,7 +136,7 @@ export default function ProductDetails() {
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* Image Section */}
           <div className="space-y-4">
-            <div className="relative bg-muted rounded-lg overflow-hidden aspect-square">
+            <div className="relative bg-muted rounded-lg overflow-hidden aspect-[4/5] md:aspect-square max-h-[500px]">
               <img
                 src={allImages[selectedImageIndex]}
                 alt={product.name}

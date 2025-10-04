@@ -129,10 +129,10 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
             <div className="h-10 w-64 bg-muted animate-pulse rounded mx-auto mb-2" />
             <div className="h-4 w-48 bg-muted animate-pulse rounded mx-auto" />
           </div>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {[...Array(8)].map((_, i) => (
               <Card key={i} className="overflow-hidden">
-                <div className="aspect-[3/4] bg-muted animate-pulse" />
+                <div className="aspect-square bg-muted animate-pulse" />
                 <CardContent className="p-4">
                   <div className="h-6 bg-muted animate-pulse rounded mb-2" />
                   <div className="h-4 bg-muted animate-pulse rounded mb-3 w-2/3" />
@@ -169,7 +169,7 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
         {/* Products Grid */}
         {filteredProducts && filteredProducts.length > 0 ? (
           <>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {filteredProducts.map((product) => (
                 <Card
                   key={product._id}
@@ -177,7 +177,7 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
                   data-testid={`card-product-${product._id}`}
                   onClick={() => handleProductClick(product)}
                 >
-                  <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+                  <div className="relative aspect-square overflow-hidden bg-muted">
                     <img
                       src={product.imageUrl}
                       alt={product.name}
