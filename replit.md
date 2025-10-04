@@ -8,6 +8,14 @@ This is a modern jewelry catalog web application built with React and Express. T
 
 ### Latest Features (October 4, 2025)
 
+#### Vercel Deployment Refactoring
+- **Serverless Architecture**: Refactored entire application for Vercel deployment
+- **Separate API Functions**: All API endpoints moved to `/api` folder as individual serverless functions
+- **MongoDB Caching**: Implemented cached MongoDB client for optimal serverless performance
+- **API Logging**: Added comprehensive browser console logging for all API calls with timing and status indicators
+- **Vercel Configuration**: Created complete `vercel.json` with proper routing and settings
+- **Deployment Ready**: Full documentation in `VERCEL_DEPLOYMENT.md` with step-by-step instructions
+
 #### Complete Moneycontrol Integration
 - **Unified Data Source**: All rates now sourced from Moneycontrol.com (previously IBJA.co for gold)
 - **Consistent Units**: All rates displayed per 10 grams for easy comparison
@@ -106,24 +114,44 @@ Preferred communication style: Simple, everyday language.
 ### Backend Architecture
 
 **Technology Stack:**
-- Express.js with TypeScript
+- Express.js with TypeScript (development)
+- Vercel Serverless Functions (production)
 - MongoDB with native MongoDB driver for data persistence
 - Zod for runtime validation and schema definition
-- Drizzle ORM configuration (present but MongoDB is the active database)
+- @vercel/node for Vercel serverless function types
 
-**API Structure:**
-- RESTful API endpoints under `/api` prefix
+**API Structure (Dual Mode):**
+1. **Development Mode** (`npm run dev`):
+   - Unified Express server serving both API and frontend
+   - MongoDB connection maintained across requests
+   
+2. **Production Mode** (Vercel):
+   - Individual serverless functions in `/api` folder
+   - Cached MongoDB client for performance
+   - Each endpoint is a separate file under `/api`
+
+**API Endpoints (under `/api`):**
 - Categories: CRUD operations for jewelry categories
-- Products: CRUD operations with filtering by category
-- Carousel: Manages homepage carousel images
-- Shop Info: Store information and contact details
-- User management: Basic user operations
+  - `GET /api/categories` - List all
+  - `POST /api/categories` - Create
+  - `GET /api/categories/:slug` - Get by slug
+  - `PATCH /api/categories/:slug` - Update
+- Products: CRUD operations with filtering
+  - `GET /api/products` - List with optional category filter
+  - `POST /api/products` - Create
+  - `GET /api/products/:id` - Get by ID
+  - `GET /api/products/new-arrivals` - Featured new arrivals
+  - `GET /api/products/trending` - Trending products
+- Carousel: `GET /api/carousel` - Homepage carousel images
+- Shop Info: `GET/PATCH /api/shop-info` - Store information
+- Rates: `GET /api/rates` - Live gold/silver rates
 
 **Design Decisions:**
-- **Validation**: Zod schemas in shared directory ensure type safety between client and server
-- **Error handling**: Centralized error responses with appropriate HTTP status codes
-- **Logging**: Request/response logging middleware for API routes
-- **Database abstraction**: Storage interface pattern allows for potential database swapping
+- **Serverless MongoDB**: Cached client at module level, reused across invocations
+- **API Logging**: All requests logged in browser console with timing and status
+- **Validation**: Zod schemas in shared directory ensure type safety
+- **Error handling**: Consistent error responses with HTTP status codes
+- **Dual Development**: Same codebase works in both traditional and serverless modes
 
 ### Data Storage
 
@@ -237,12 +265,16 @@ Once the MongoDB URI is set, the application will:
   - Vite dev server has `allowedHosts: true` (required for Replit's proxy)
 
 ### Required Secrets
-- `MONGODB_URI`: MongoDB connection string (stored in Replit Secrets) - **MUST BE CONFIGURED**
+- `MONGODB_URI`: MongoDB connection string (stored in Replit Secrets or Vercel Environment Variables) - **MUST BE CONFIGURED**
+- For Vercel deployment, configure all environment variables in Vercel dashboard
 
 ### Development Commands
 - `npm run dev`: Start development server (Express + Vite HMR)
-- `npm run build`: Build for production
-- `npm run start`: Run production server
+- `npm run dev:vercel`: Start Vercel development server (simulates production)
+- `npm run build`: Build frontend for production (Vite only)
+- `npm run build:server`: Build Express server for traditional deployment
+- `npm run vercel-build`: Vercel's build command (same as build)
+- `npm run start`: Run production server (traditional deployment)
 - `npm run check`: TypeScript type checking
 - `npm run db:push`: Push Drizzle schema to database (for PostgreSQL alternative)
 
