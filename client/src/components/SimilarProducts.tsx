@@ -15,6 +15,19 @@ export default function SimilarProducts({
 }: SimilarProductsProps) {
   const [, setLocation] = useLocation();
 
+  const handleProductClick = (productId: string) => {
+    // Smooth scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    
+    // Navigate after a short delay to show the scroll animation
+    setTimeout(() => {
+      setLocation(`/product/${productId}`);
+    }, 300);
+  };
+
   const { data: products, isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products", category],
     queryFn: async () => {

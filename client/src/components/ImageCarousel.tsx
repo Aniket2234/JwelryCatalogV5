@@ -210,6 +210,15 @@ export default function VideoCarousel() {
     }
   }, [currentSlide]);
 
+  // Auto-slide carousel every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
+
   // Handle touch/swipe gestures
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
