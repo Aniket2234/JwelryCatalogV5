@@ -135,8 +135,8 @@ export default function ProductDetails() {
         {/* Product Details */}
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* Image Section */}
-          <div className="space-y-4">
-            <div className="relative bg-muted rounded-lg overflow-hidden aspect-[4/5] md:aspect-square max-h-[500px]">
+          <div className="space-y-4 flex flex-col items-center">
+            <div className="relative bg-muted rounded-lg overflow-hidden aspect-[4/5] md:aspect-square max-h-[500px] w-full max-w-md">
               <img
                 src={allImages[selectedImageIndex]}
                 alt={product.name}
@@ -158,7 +158,7 @@ export default function ProductDetails() {
             
             {/* Thumbnail Navigation */}
             {allImages.length > 1 && (
-              <div className="flex gap-2 overflow-x-auto">
+              <div className="flex gap-2 overflow-x-auto justify-center">
                 {allImages.map((image, index) => (
                   <button
                     key={index}
