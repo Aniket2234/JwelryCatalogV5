@@ -130,10 +130,10 @@ export default function ProductDetails() {
         />
       )}
       <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8 mt-20">
+        <div className="container mx-auto px-4 py-6 mt-16">
 
         {/* Product Details */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {/* Image Section */}
           <div className="space-y-4 flex flex-col items-center">
             <div className="relative bg-muted rounded-lg overflow-hidden aspect-[4/5] md:aspect-square max-h-[500px] w-full max-w-md">
@@ -184,8 +184,8 @@ export default function ProductDetails() {
           {/* Details Section */}
           <div className="flex flex-col">
             <div className="flex-1">
-              <div className="flex items-start justify-between mb-2">
-                <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold flex-1">
+              <div className="flex items-start justify-between mb-1">
+                <h1 className="font-serif text-3xl md:text-4xl font-bold flex-1">
                   {product.name}
                 </h1>
                 <div className="flex items-center gap-2 ml-4">
@@ -201,31 +201,31 @@ export default function ProductDetails() {
                   />
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground mb-4 capitalize">
+              <p className="text-sm text-muted-foreground mb-3 capitalize">
                 {product.category}
               </p>
 
-              <div className="flex items-baseline gap-3 mb-6">
-                <p className="font-bold text-4xl text-primary">
+              <div className="flex items-baseline gap-3 mb-4">
+                <p className="font-bold text-3xl text-primary">
                   ₹{product.price.toLocaleString()}
                 </p>
                 {product.originalPrice && (
-                  <p className="text-xl text-muted-foreground line-through">
+                  <p className="text-lg text-muted-foreground line-through">
                     ₹{product.originalPrice.toLocaleString()}
                   </p>
                 )}
               </div>
 
-              <div className="prose max-w-none mb-6">
-                <p className="text-muted-foreground leading-relaxed text-lg">
+              <div className="prose max-w-none mb-5">
+                <p className="text-muted-foreground leading-relaxed">
                   {product.description}
                 </p>
               </div>
 
               {/* Product Specifications - Accordion Style */}
-              <div className="mb-6">
-                <h3 className="font-semibold text-lg border-b pb-2 mb-4">Product Specifications</h3>
-                <Accordion type="single" collapsible className="space-y-2" defaultValue="availability">
+              <div className="mb-4">
+                <h3 className="font-semibold text-lg border-b pb-2 mb-3">Product Specifications</h3>
+                <Accordion type="single" collapsible className="space-y-1.5" defaultValue="availability">
                   <AccordionItem value="availability" className="border rounded-lg px-4 bg-secondary/20">
                     <AccordionTrigger className="hover:no-underline py-3">
                       <div className="flex items-center justify-between w-full pr-4">
@@ -353,7 +353,7 @@ export default function ProductDetails() {
         </div>
 
         {/* Similar Products Section */}
-        <div className="container mx-auto px-4 pb-12">
+        <div className="container mx-auto px-4 pb-8 pt-6">
           <SimilarProducts
             currentProductId={product._id}
             category={product.category}
