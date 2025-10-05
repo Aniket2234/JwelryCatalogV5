@@ -367,7 +367,7 @@ export default function Products() {
               <Button
                 variant="outline"
                 onClick={() => setShowFilterDrawer(true)}
-                className="flex items-center gap-2 flex-1 justify-center"
+                className="flex items-center gap-2 flex-1 justify-center hover:bg-primary/10 active:bg-primary/20"
                 data-testid="button-filters"
               >
                 <SlidersHorizontal className="h-4 w-4" />
@@ -422,7 +422,7 @@ export default function Products() {
             </div>
 
             {/* Product count - Mobile */}
-            <div className="mt-3 text-center">
+            <div className="mt-3 text-center hidden">
               <p
                 className="text-sm text-muted-foreground"
                 data-testid="text-product-count-mobile"
@@ -725,7 +725,7 @@ export default function Products() {
                   </p>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 px-1">
                   {filteredAndSortedProducts.map((product) => (
                     <motion.div
                       key={product._id}

@@ -34,10 +34,13 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
         </div>
 
         <Link href="/">
-          <h1 className="font-serif text-2xl md:text-3xl font-bold text-center flex-1 cursor-pointer" data-testid="text-brand-name">
-            <span className="text-primary">Jewelry</span>{" "}
-            <span className="text-foreground">Catalog</span>
-          </h1>
+          <div className="relative">
+            <h1 className="font-serif text-2xl md:text-3xl font-bold text-center flex-1 cursor-pointer pb-1" data-testid="text-brand-name">
+              <span className="text-primary">Jewelry</span>{" "}
+              <span className="text-foreground">Catalog</span>
+            </h1>
+            <div className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-70"></div>
+          </div>
         </Link>
 
         <div className="flex items-center gap-2">
