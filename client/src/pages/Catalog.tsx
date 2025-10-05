@@ -15,7 +15,7 @@ import Footer from "@/components/Footer";
 import { Product } from "@shared/schema";
 
 export default function Catalog() {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -72,18 +72,15 @@ export default function Catalog() {
   };
 
   const handleViewAllNewArrivals = () => {
-    setViewMode("new-arrivals");
-    setSelectedCategory("all");
+    setLocation("/products?collection=new-arrivals");
   };
 
   const handleViewAllTrending = () => {
-    setViewMode("trending");
-    setSelectedCategory("all");
+    setLocation("/products?collection=trending");
   };
 
   const handleViewAllExclusive = () => {
-    setViewMode("exclusive");
-    setSelectedCategory("all");
+    setLocation("/products?collection=exclusive");
   };
 
   const handleBackToHome = () => {
