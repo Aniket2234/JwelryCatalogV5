@@ -64,79 +64,65 @@ export default function HorizontalProductScroll({
               data-testid={`scroll-container-${title.toLowerCase().replace(/\s+/g, '-')}`}
             >
               {products.map((product) => (
-                <Card
+                <div
                   key={product._id}
-                  className="flex-shrink-0 w-56 cursor-pointer hover:shadow-lg transition-shadow duration-300 snap-start"
+                  className="flex-shrink-0 w-56 cursor-pointer group snap-start"
                   onClick={() => setLocation(`/product/${product._id}`)}
                   data-testid={`product-card-${product._id}`}
                 >
-                  <CardContent className="p-0">
-                    <div className="relative overflow-hidden aspect-[3/4]">
-                      <img
-                        src={product.imageUrl}
-                        alt={product.name}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                        data-testid={`product-image-${product._id}`}
-                      />
-                      {product.featured && (
-                        <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
-                          NEW
-                        </Badge>
-                      )}
-                      {product.originalPrice && product.originalPrice > product.price && (
-                        <Badge className={`absolute ${product.featured ? 'top-12' : 'top-3'} right-3 bg-destructive text-destructive-foreground`}>
-                          SALE
-                        </Badge>
-                      )}
-                      {!product.inStock && (
-                        <div
-                          className="absolute inset-0 bg-black/50 flex items-center justify-center"
-                          data-testid={`overlay-out-of-stock-${product._id}`}
-                        >
-                          <span className="text-white font-bold text-lg">Out of Stock</span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="p-4">
-                      <h3
-                        className="font-semibold text-base mb-2 line-clamp-2 min-h-[48px]"
-                        data-testid={`product-name-${product._id}`}
+                  <div className="relative overflow-hidden aspect-[3/4] rounded-lg mb-3">
+                    <img
+                      src={product.imageUrl}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      data-testid={`product-image-${product._id}`}
+                    />
+                    {product.featured && (
+                      <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
+                        NEW
+                      </Badge>
+                    )}
+                    {product.originalPrice && product.originalPrice > product.price && (
+                      <Badge className={`absolute ${product.featured ? 'top-12' : 'top-3'} right-3 bg-destructive text-destructive-foreground`}>
+                        SALE
+                      </Badge>
+                    )}
+                    {!product.inStock && (
+                      <div
+                        className="absolute inset-0 bg-black/50 flex items-center justify-center"
+                        data-testid={`overlay-out-of-stock-${product._id}`}
                       >
-                        {product.name}
-                      </h3>
-
-                      <div className="flex items-center gap-2">
-                        <span
-                          className="text-lg font-bold text-primary"
-                          data-testid={`product-price-${product._id}`}
-                        >
-                          ₹{product.price.toLocaleString("en-IN")}
-                        </span>
-                        {product.originalPrice && product.originalPrice > product.price && (
-                          <span
-                            className="text-sm text-muted-foreground line-through"
-                            data-testid={`product-original-price-${product._id}`}
-                          >
-                            ₹{product.originalPrice.toLocaleString("en-IN")}
-                          </span>
-                        )}
+                        <span className="text-white font-bold text-lg">Out of Stock</span>
                       </div>
+                    )}
+                  </div>
 
+                  <div>
+                    <h3
+                      className="font-serif text-base font-semibold mb-2 line-clamp-2"
+                      data-testid={`product-name-${product._id}`}
+                    >
+                      {product.name}
+                    </h3>
+
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="text-lg font-bold text-primary"
+                        data-testid={`product-price-${product._id}`}
+                      >
+                        ₹{product.price.toLocaleString("en-IN")}
+                      </span>
                       {product.originalPrice && product.originalPrice > product.price && (
-                        <div
-                          className="mt-1 text-sm text-green-600 font-semibold"
-                          data-testid={`product-discount-${product._id}`}
+                        <span
+                          className="text-sm text-muted-foreground line-through"
+                          data-testid={`product-original-price-${product._id}`}
                         >
-                          {Math.round(
-                            ((product.originalPrice - product.price) / product.originalPrice) * 100
-                          )}
-                          % off
-                        </div>
+                          ₹{product.originalPrice.toLocaleString("en-IN")}
+                        </span>
                       )}
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
