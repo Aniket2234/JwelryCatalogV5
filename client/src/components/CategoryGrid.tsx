@@ -68,6 +68,15 @@ export default function CategoryGrid({
                       playsInline
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
+                  ) : category.slug === "bangles" ? (
+                    <video
+                      src="/BANGLES.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
                   ) : (
                     <img
                       src={
