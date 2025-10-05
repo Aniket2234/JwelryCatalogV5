@@ -168,7 +168,7 @@ export default function Welcome() {
   });
 
   const handleExploreCatalog = () => {
-    setLocation("/products?category=all");
+    setLocation("/catalog");
   };
 
   return (
