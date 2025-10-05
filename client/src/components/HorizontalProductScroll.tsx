@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { Product } from "@shared/schema";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ChevronRight } from "lucide-react";
 
 interface HorizontalProductScrollProps {
@@ -77,13 +78,15 @@ export default function HorizontalProductScroll({
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                         data-testid={`product-image-${product._id}`}
                       />
+                      {product.featured && (
+                        <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
+                          NEW
+                        </Badge>
+                      )}
                       {product.originalPrice && product.originalPrice > product.price && (
-                        <div
-                          className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded text-sm font-semibold"
-                          data-testid={`badge-sale-${product._id}`}
-                        >
+                        <Badge className={`absolute ${product.featured ? 'top-12' : 'top-3'} right-3 bg-destructive text-destructive-foreground`}>
                           SALE
-                        </div>
+                        </Badge>
                       )}
                       {!product.inStock && (
                         <div
