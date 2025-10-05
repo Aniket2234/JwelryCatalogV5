@@ -5,6 +5,9 @@ export function objectIdToString(id: ObjectId | string): string {
 }
 
 export function stringToObjectId(id: string): ObjectId {
+  if (!ObjectId.isValid(id)) {
+    throw new Error(`Invalid ObjectId format: ${id}`);
+  }
   return new ObjectId(id);
 }
 
