@@ -176,17 +176,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Update each product with the new fields if they don't exist
       const updates = products.map(async (product, index) => {
-        // Assign isNewArrival and isNewTrend based on position
-        // First 5 products are new arrivals, next 5 are trending
+        // Assign isNewArrival, isTrending, and isExclusive based on position
+        // First 5 products are new arrivals, next 5 are trending, next 5 are exclusive
         const isNewArrival = index < 5;
-        const isNewTrend = index >= 5 && index < 10;
+        const isTrending = index >= 5 && index < 10;
+        const isExclusive = index >= 10 && index < 15;
         
         return db.collection("products").updateOne(
           { _id: product._id },
           { 
             $set: { 
               isNewArrival: product.isNewArrival !== undefined ? product.isNewArrival : isNewArrival,
-              isNewTrend: product.isNewTrend !== undefined ? product.isNewTrend : isNewTrend
+              isTrending: product.isTrending !== undefined ? product.isTrending : (product.isNewTrend !== undefined ? product.isNewTrend : isTrending),
+              isExclusive: product.isExclusive !== undefined ? product.isExclusive : isExclusive
             } 
           }
         );
