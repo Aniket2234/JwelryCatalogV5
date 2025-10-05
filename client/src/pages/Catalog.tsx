@@ -52,20 +52,6 @@ export default function Catalog() {
       queryKey: ["/api/products/exclusive"],
     });
 
-  // Debug logging
-  useEffect(() => {
-    console.log('📊 API Response Counts:', {
-      newArrivals: newArrivals.length,
-      trending: trendingProducts.length,
-      exclusive: exclusiveProducts.length
-    });
-    if (newArrivals.length > 0) console.log('✅ New Arrivals Sample:', newArrivals[0]);
-    if (trendingProducts.length > 0) console.log('✅ Trending Sample:', trendingProducts[0]);
-    if (exclusiveProducts.length > 0) console.log('✅ Exclusive Sample:', exclusiveProducts[0]);
-    if (newArrivals.length === 0) console.warn('⚠️ New Arrivals is EMPTY!');
-    if (trendingProducts.length === 0) console.warn('⚠️ Trending is EMPTY!');
-  }, [newArrivals, trendingProducts, exclusiveProducts]);
-
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const categoryParam = params.get("category");
@@ -142,23 +128,6 @@ export default function Catalog() {
   const filteredNewArrivals = filterProducts(newArrivals);
   const filteredTrending = filterProducts(trendingProducts);
   const filteredExclusive = filterProducts(exclusiveProducts);
-
-  // Debug filtered results
-  useEffect(() => {
-    console.log('🔍 After Filtering:', {
-      newArrivals: filteredNewArrivals.length,
-      trending: filteredTrending.length,
-      exclusive: filteredExclusive.length
-    });
-    console.log('🔧 Filter Settings:', { searchQuery, priceRange });
-    
-    if (newArrivals.length > 0 && filteredNewArrivals.length === 0) {
-      console.error('❌ New Arrivals filtered out! Check price range or search');
-    }
-    if (trendingProducts.length > 0 && filteredTrending.length === 0) {
-      console.error('❌ Trending filtered out! Check price range or search');
-    }
-  }, [filteredNewArrivals, filteredTrending, filteredExclusive, newArrivals.length, trendingProducts.length, searchQuery, priceRange]);
 
   const showBackButton = selectedCategory !== "all" || viewMode !== "home";
 

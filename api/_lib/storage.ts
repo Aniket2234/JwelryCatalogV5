@@ -86,7 +86,7 @@ export class MongoStorage {
   async getNewArrivals() {
     const products = await this.db
       .collection("products")
-      .find({ featured: true })
+      .find({ isNewArrival: true, inStock: true })
       .sort({ displayOrder: 1 })
       .limit(10)
       .toArray();
@@ -99,8 +99,8 @@ export class MongoStorage {
   async getTrendingProducts() {
     const products = await this.db
       .collection("products")
-      .find({ featured: true })
-      .sort({ displayOrder: -1 })
+      .find({ isTrending: true, inStock: true })
+      .sort({ displayOrder: 1 })
       .limit(10)
       .toArray();
     return products.map((prod) => ({

@@ -1,0 +1,132 @@
+index-CS9WBNKL.js:48 🔍 API GET /api/rates
+index-CS9WBNKL.js:48 ✅ API GET /api/rates - 200 (549ms)
+index-CS9WBNKL.js:48 🔍 API GET /api/categories
+index-CS9WBNKL.js:48 🔍 API GET /api/shop-info
+index-CS9WBNKL.js:48 🔍 API GET /api/products/new-arrivals
+index-CS9WBNKL.js:48 🔍 API GET /api/products/trending
+index-CS9WBNKL.js:48 🔍 API GET /api/products/exclusive
+index-CS9WBNKL.js:227 📊 API Response Counts: Object
+index-CS9WBNKL.js:227 ⚠️ New Arrivals is EMPTY!
+(anonymous) @ index-CS9WBNKL.js:227
+index-CS9WBNKL.js:227 ⚠️ Trending is EMPTY!
+(anonymous) @ index-CS9WBNKL.js:227
+index-CS9WBNKL.js:227 🔍 After Filtering: Object
+index-CS9WBNKL.js:227 🔧 Filter Settings: Object
+index-CS9WBNKL.js:48 ✅ API GET /api/shop-info - 200 (3087ms)
+index-CS9WBNKL.js:48 ✅ API GET /api/categories - 200 (3087ms)
+index-CS9WBNKL.js:48 ✅ API GET /api/products/trending - 200 (3087ms)
+index-CS9WBNKL.js:227 📊 API Response Counts: {newArrivals: 0, trending: 0, exclusive: 0}
+index-CS9WBNKL.js:227 ⚠️ New Arrivals is EMPTY!
+(anonymous) @ index-CS9WBNKL.js:227
+Xl @ index-CS9WBNKL.js:40
+Ro @ index-CS9WBNKL.js:40
+TE @ index-CS9WBNKL.js:40
+Er @ index-CS9WBNKL.js:40
+Jm @ index-CS9WBNKL.js:40
+wr @ index-CS9WBNKL.js:38
+(anonymous) @ index-CS9WBNKL.js:40
+setTimeout
+o @ index-CS9WBNKL.js:48
+i @ index-CS9WBNKL.js:48
+batch @ index-CS9WBNKL.js:48
+hn @ index-CS9WBNKL.js:48
+setData @ index-CS9WBNKL.js:48
+onSuccess @ index-CS9WBNKL.js:48
+f @ index-CS9WBNKL.js:48
+index-CS9WBNKL.js:227 ⚠️ Trending is EMPTY!
+(anonymous) @ index-CS9WBNKL.js:227
+Xl @ index-CS9WBNKL.js:40
+Ro @ index-CS9WBNKL.js:40
+TE @ index-CS9WBNKL.js:40
+Er @ index-CS9WBNKL.js:40
+Jm @ index-CS9WBNKL.js:40
+wr @ index-CS9WBNKL.js:38
+(anonymous) @ index-CS9WBNKL.js:40
+setTimeout
+o @ index-CS9WBNKL.js:48
+i @ index-CS9WBNKL.js:48
+batch @ index-CS9WBNKL.js:48
+hn @ index-CS9WBNKL.js:48
+setData @ index-CS9WBNKL.js:48
+onSuccess @ index-CS9WBNKL.js:48
+f @ index-CS9WBNKL.js:48
+index-CS9WBNKL.js:227 🔍 After Filtering: {newArrivals: 0, trending: 0, exclusive: 0}
+index-CS9WBNKL.js:227 🔧 Filter Settings: {searchQuery: '', priceRange: Array(2)}
+index-CS9WBNKL.js:48 ✅ API GET /api/products/exclusive - 200 (3419ms)
+index-CS9WBNKL.js:48 ✅ API GET /api/products/new-arrivals - 200 (3423ms)
+index-CS9WBNKL.js:227 📊 API Response Counts: {newArrivals: 0, trending: 0, exclusive: 5}
+index-CS9WBNKL.js:227 ✅ Exclusive Sample: {_id: '68dd3830e937a857de5a2d84', name: 'Traditional Gold Bangles', description: 'Set of 2 traditional gold bangles', price: 48000, imageUrl: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&h=667&fit=crop', …}
+index-CS9WBNKL.js:227 ⚠️ New Arrivals is EMPTY!
+(anonymous) @ index-CS9WBNKL.js:227
+Xl @ index-CS9WBNKL.js:40
+Ro @ index-CS9WBNKL.js:40
+TE @ index-CS9WBNKL.js:40
+Er @ index-CS9WBNKL.js:40
+Jm @ index-CS9WBNKL.js:40
+wr @ index-CS9WBNKL.js:38
+(anonymous) @ index-CS9WBNKL.js:40
+setTimeout
+o @ index-CS9WBNKL.js:48
+i @ index-CS9WBNKL.js:48
+batch @ index-CS9WBNKL.js:48
+hn @ index-CS9WBNKL.js:48
+setData @ index-CS9WBNKL.js:48
+onSuccess @ index-CS9WBNKL.js:48
+f @ index-CS9WBNKL.js:48
+index-CS9WBNKL.js:227 ⚠️ Trending is EMPTY!
+(anonymous) @ index-CS9WBNKL.js:227
+Xl @ index-CS9WBNKL.js:40
+Ro @ index-CS9WBNKL.js:40
+TE @ index-CS9WBNKL.js:40
+Er @ index-CS9WBNKL.js:40
+Jm @ index-CS9WBNKL.js:40
+wr @ index-CS9WBNKL.js:38
+(anonymous) @ index-CS9WBNKL.js:40
+setTimeout
+o @ index-CS9WBNKL.js:48
+i @ index-CS9WBNKL.js:48
+batch @ index-CS9WBNKL.js:48
+hn @ index-CS9WBNKL.js:48
+setData @ index-CS9WBNKL.js:48
+onSuccess @ index-CS9WBNKL.js:48
+f @ index-CS9WBNKL.js:48
+index-CS9WBNKL.js:227 🔍 After Filtering: {newArrivals: 0, trending: 0, exclusive: 5}
+index-CS9WBNKL.js:227 🔧 Filter Settings: {searchQuery: '', priceRange: Array(2)}
+index-CS9WBNKL.js:227 📊 API Response Counts: {newArrivals: 0, trending: 0, exclusive: 5}
+index-CS9WBNKL.js:227 ✅ Exclusive Sample: {_id: '68dd3830e937a857de5a2d84', name: 'Traditional Gold Bangles', description: 'Set of 2 traditional gold bangles', price: 48000, imageUrl: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&h=667&fit=crop', …}
+index-CS9WBNKL.js:227 ⚠️ New Arrivals is EMPTY!
+(anonymous) @ index-CS9WBNKL.js:227
+Xl @ index-CS9WBNKL.js:40
+Ro @ index-CS9WBNKL.js:40
+TE @ index-CS9WBNKL.js:40
+Er @ index-CS9WBNKL.js:40
+Jm @ index-CS9WBNKL.js:40
+wr @ index-CS9WBNKL.js:38
+(anonymous) @ index-CS9WBNKL.js:40
+setTimeout
+o @ index-CS9WBNKL.js:48
+i @ index-CS9WBNKL.js:48
+batch @ index-CS9WBNKL.js:48
+hn @ index-CS9WBNKL.js:48
+setData @ index-CS9WBNKL.js:48
+onSuccess @ index-CS9WBNKL.js:48
+f @ index-CS9WBNKL.js:48
+index-CS9WBNKL.js:227 ⚠️ Trending is EMPTY!
+(anonymous) @ index-CS9WBNKL.js:227
+Xl @ index-CS9WBNKL.js:40
+Ro @ index-CS9WBNKL.js:40
+TE @ index-CS9WBNKL.js:40
+Er @ index-CS9WBNKL.js:40
+Jm @ index-CS9WBNKL.js:40
+wr @ index-CS9WBNKL.js:38
+(anonymous) @ index-CS9WBNKL.js:40
+setTimeout
+o @ index-CS9WBNKL.js:48
+i @ index-CS9WBNKL.js:48
+batch @ index-CS9WBNKL.js:48
+hn @ index-CS9WBNKL.js:48
+setData @ index-CS9WBNKL.js:48
+onSuccess @ index-CS9WBNKL.js:48
+f @ index-CS9WBNKL.js:48
+index-CS9WBNKL.js:227 🔍 After Filtering: {newArrivals: 0, trending: 0, exclusive: 5}
+index-CS9WBNKL.js:227 🔧 Filter Settings: {searchQuery: '', priceRange: Array(2)}
