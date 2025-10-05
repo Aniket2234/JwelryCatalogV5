@@ -91,6 +91,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/products/exclusive", async (_req, res) => {
+    try {
+      const products = await getStorage().getExclusiveProducts();
+      res.json(products);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch exclusive products" });
+    }
+  });
+
   app.get("/api/products/:id", async (req, res) => {
     try {
       const product = await getStorage().getProductById(req.params.id);
