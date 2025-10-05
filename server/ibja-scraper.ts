@@ -23,18 +23,23 @@ async function fetchGoldRatesFromMoneycontrol(): Promise<{ gold24k: number; gold
 
     const pageText = $('body').text();
     
-    // Look for "GOLD RATE TODAY ₹ 115,400" - this is 24K per 10 grams
-    const gold24kMatch = pageText.match(/GOLD\s+RATE\s+TODAY[^\d]*?₹\s*([\d,]+)/i);
-    
     let gold24kPer10g = 0;
     let gold22kPer10g = 0;
     
-    if (gold24kMatch && gold24kMatch[1]) {
-      gold24kPer10g = parseInt(gold24kMatch[1].replace(/,/g, ''));
-      if (gold24kPer10g > 10000 && gold24kPer10g < 200000) { // Sanity check
-        console.log('Found 24K gold rate from Moneycontrol:', gold24kPer10g, 'per 10g');
-      } else {
-        gold24kPer10g = 0;
+    // Find 24K gold - look for ₹ 115,400 style number (higher than 22K which is ~109k)
+    const allPrices = pageText.match(/₹\s*(1[01][0-9],\d{3})/g);
+    if (allPrices && allPrices.length > 0) {
+      for (const price of allPrices) {
+        const match = price.match(/₹\s*([\d,]+)/);
+        if (match) {
+          const rate = parseInt(match[1].replace(/,/g, ''));
+          // 24K should be higher than 22K (typically 113k-125k range)
+          if (rate > 113000 && rate < 130000) {
+            gold24kPer10g = rate;
+            console.log('Found 24K gold rate:', gold24kPer10g, 'per 10g');
+            break;
+          }
+        }
       }
     }
 
@@ -81,35 +86,37 @@ async function fetchSilverRateFromMoneycontrol(): Promise<number> {
 
     const pageText = $('body').text();
     
-    // Try to find the main silver rate display per kg
-    const silverRateMatch = pageText.match(/SILVER\s+RATE\s+TODAY[^\d]*?₹\s*([\d,]+)/i);
+    // Try to find rates in the format ₹ 165,000 (per kg)
+    const silverKgMatch = pageText.match(/₹\s*(1[0-9]{2},\d{3})/);
     
-    if (silverRateMatch && silverRateMatch[1]) {
-      const ratePerKg = parseInt(silverRateMatch[1].replace(/,/g, ''));
-      if (ratePerKg > 10000) { // Sanity check - per kg should be > 10,000
-        const ratePer10g = Math.round(ratePerKg / 100); // Convert kg to 10g
-        console.log('Found silver rate from Moneycontrol:', ratePerKg, 'per kg →', ratePer10g, 'per 10g');
+    if (silverKgMatch && silverKgMatch[1]) {
+      const ratePerKg = parseInt(silverKgMatch[1].replace(/,/g, ''));
+      if (ratePerKg > 100000 && ratePerKg < 300000) {
+        const ratePer10g = Math.round(ratePerKg / 100);
+        console.log('Found silver rate:', ratePerKg, 'per kg →', ratePer10g, 'per 10g');
         return ratePer10g;
       }
     }
 
-    // Alternative: Look for "10 grams" in the table
-    const silver10gMatch = pageText.match(/10\s+[Gg]rams?[^₹]*₹\s*([\d,]+)/i);
-    
+    // Look for ₹ 1,650 pattern (per 10g directly)
+    const silver10gMatch = pageText.match(/₹\s*(1,\d{3})\s/);
     if (silver10gMatch && silver10gMatch[1]) {
       const ratePer10g = parseInt(silver10gMatch[1].replace(/,/g, ''));
-      console.log('Found silver rate per 10g from table:', ratePer10g);
-      return ratePer10g;
+      if (ratePer10g > 1000 && ratePer10g < 3000) {
+        console.log('Found silver rate per 10g:', ratePer10g);
+        return ratePer10g;
+      }
     }
 
-    // Try per gram and multiply by 10
-    const gramMatch = pageText.match(/1\s+Gram[^₹]*₹\s*([\d,]+)/i);
-    
+    // Alternative: Look for per gram and multiply by 10
+    const gramMatch = pageText.match(/₹\s*(1[0-9]{2})\s/);
     if (gramMatch && gramMatch[1]) {
-      const ratePerGram = parseInt(gramMatch[1].replace(/,/g, ''));
-      const ratePer10g = ratePerGram * 10;
-      console.log('Found silver rate per gram from table:', ratePerGram, '→ per 10g:', ratePer10g);
-      return ratePer10g;
+      const ratePerGram = parseInt(gramMatch[1]);
+      if (ratePerGram > 100 && ratePerGram < 300) {
+        const ratePer10g = ratePerGram * 10;
+        console.log('Found silver rate per gram:', ratePerGram, '→ per 10g:', ratePer10g);
+        return ratePer10g;
+      }
     }
 
     console.log('Could not find silver rate on Moneycontrol');
