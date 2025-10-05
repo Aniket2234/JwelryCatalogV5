@@ -27,6 +27,7 @@ export default function SideDrawer({
   });
 
   const handleCategoryClick = (slug: string) => {
+    window.scrollTo(0, 0);
     onCategorySelect(slug);
     setLocation(`/products?category=${slug}`);
     toggleMenu();

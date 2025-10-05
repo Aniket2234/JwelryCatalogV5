@@ -51,6 +51,7 @@ export default function CategoryGrid({
             <button
               key={category._id}
               onClick={() => {
+                window.scrollTo(0, 0);
                 onCategorySelect(category.slug);
                 setLocation(`/products?category=${category.slug}`);
               }}

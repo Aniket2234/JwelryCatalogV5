@@ -82,14 +82,17 @@ export default function Catalog() {
   };
 
   const handleViewAllNewArrivals = () => {
+    window.scrollTo(0, 0);
     setLocation("/products?collection=new-arrivals");
   };
 
   const handleViewAllTrending = () => {
+    window.scrollTo(0, 0);
     setLocation("/products?collection=trending");
   };
 
   const handleViewAllExclusive = () => {
+    window.scrollTo(0, 0);
     setLocation("/products?collection=exclusive");
   };
 

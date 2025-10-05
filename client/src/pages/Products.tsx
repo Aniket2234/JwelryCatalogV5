@@ -60,6 +60,7 @@ export default function Products() {
 
   // Get category and collection from URL params
   useEffect(() => {
+    window.scrollTo(0, 0);
     const params = new URLSearchParams(window.location.search);
     const categoryParam = params.get("category");
     const collectionParam = params.get("collection");
