@@ -270,7 +270,7 @@ export default function Catalog() {
         </div>
 
         {/* Show Footer only on main screen (when in home view) */}
-        {selectedCategory === "all" && viewMode === "home" && <Footer />}
+        {/* {selectedCategory === "all" && viewMode === "home" && <Footer />} */}
       </motion.div>
 
       <FilterDrawer
