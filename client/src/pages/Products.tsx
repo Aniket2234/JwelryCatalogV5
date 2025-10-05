@@ -2,7 +2,15 @@ import { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
-import { Search, SlidersHorizontal, ChevronDown, Mic, X, ArrowLeft, ChevronUp } from "lucide-react";
+import {
+  Search,
+  SlidersHorizontal,
+  ChevronDown,
+  Mic,
+  X,
+  ArrowLeft,
+  ChevronUp,
+} from "lucide-react";
 import Header from "@/components/Header";
 import SideDrawer from "@/components/SideDrawer";
 import FilterDrawer, { FilterOptions } from "@/components/FilterDrawer";
@@ -20,14 +28,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
 
-type SortOption = "default" | "price-low" | "price-high" | "name-asc" | "name-desc";
+type SortOption =
+  | "default"
+  | "price-low"
+  | "price-high"
+  | "name-asc"
+  | "name-desc";
 
 export default function Products() {
   const [locationPath, setLocation] = useLocation();
   const { toast } = useToast();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [selectedCollection, setSelectedCollection] = useState<string | null>(null);
+  const [selectedCollection, setSelectedCollection] = useState<string | null>(
+    null,
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [localSearchQuery, setLocalSearchQuery] = useState("");
   const [showFilterDrawer, setShowFilterDrawer] = useState(false);
@@ -48,7 +63,7 @@ export default function Products() {
     const params = new URLSearchParams(window.location.search);
     const categoryParam = params.get("category");
     const collectionParam = params.get("collection");
-    
+
     if (collectionParam) {
       setSelectedCollection(collectionParam);
       setSelectedCategory("all");
@@ -71,13 +86,13 @@ export default function Products() {
     queryKey: ["/api/products", selectedCategory, selectedCollection],
     queryFn: async () => {
       let url = "/api/products";
-      
+
       if (selectedCollection) {
         url = `/api/products/${selectedCollection}`;
       } else if (selectedCategory && selectedCategory !== "all") {
         url = `/api/products?category=${selectedCategory}`;
       }
-      
+
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error("Failed to fetch products");
@@ -109,7 +124,8 @@ export default function Products() {
   const handleVoiceSearch = () => {
     if (typeof window !== "undefined") {
       const SpeechRecognition =
-        (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        (window as any).SpeechRecognition ||
+        (window as any).webkitSpeechRecognition;
       if (SpeechRecognition && !isListening) {
         const recognition = new SpeechRecognition();
         recognition.continuous = false;
@@ -145,14 +161,20 @@ export default function Products() {
     }
   };
 
-  const handleCheckboxChange = (filterType: keyof FilterOptions, value: string, checked: boolean) => {
+  const handleCheckboxChange = (
+    filterType: keyof FilterOptions,
+    value: string,
+    checked: boolean,
+  ) => {
     const updatedFilters = { ...filters };
     if (checked) {
       if (!updatedFilters[filterType].includes(value)) {
         updatedFilters[filterType] = [...updatedFilters[filterType], value];
       }
     } else {
-      updatedFilters[filterType] = updatedFilters[filterType].filter((v) => v !== value);
+      updatedFilters[filterType] = updatedFilters[filterType].filter(
+        (v) => v !== value,
+      );
     }
     setFilters(updatedFilters);
   };
@@ -168,47 +190,51 @@ export default function Products() {
         (product) =>
           product.name.toLowerCase().includes(query) ||
           (product.description || "").toLowerCase().includes(query) ||
-          (product.category || "").toLowerCase().includes(query)
+          (product.category || "").toLowerCase().includes(query),
       );
     }
 
     // Apply price range filter
     if (priceRange) {
       filtered = filtered.filter(
-        (product) => product.price >= priceRange[0] && product.price <= priceRange[1]
+        (product) =>
+          product.price >= priceRange[0] && product.price <= priceRange[1],
       );
     }
 
     // Apply purity filter
     if (filters?.purity && filters.purity.length > 0) {
       filtered = filtered.filter(
-        (product) => product.purity && filters.purity.includes(product.purity)
+        (product) => product.purity && filters.purity.includes(product.purity),
       );
     }
 
     // Apply weight filter
     if (filters?.weight && filters.weight.length > 0) {
       filtered = filtered.filter(
-        (product) => product.weight && filters.weight.includes(product.weight)
+        (product) => product.weight && filters.weight.includes(product.weight),
       );
     }
 
     // Apply stone filter
     if (filters?.stone && filters.stone.length > 0) {
-      filtered = filtered.filter((product) => product.stone && filters.stone.includes(product.stone));
+      filtered = filtered.filter(
+        (product) => product.stone && filters.stone.includes(product.stone),
+      );
     }
 
     // Apply gender filter
     if (filters?.gender && filters.gender.length > 0) {
       filtered = filtered.filter(
-        (product) => product.gender && filters.gender.includes(product.gender)
+        (product) => product.gender && filters.gender.includes(product.gender),
       );
     }
 
     // Apply occasion filter
     if (filters?.occasion && filters.occasion.length > 0) {
       filtered = filtered.filter(
-        (product) => product.occasion && filters.occasion.includes(product.occasion)
+        (product) =>
+          product.occasion && filters.occasion.includes(product.occasion),
       );
     }
 
@@ -240,9 +266,11 @@ export default function Products() {
 
   const currentCategoryName = useMemo(() => {
     if (selectedCollection) {
-      return selectedCollection === "new-arrivals" ? "New Arrivals" :
-             selectedCollection === "trending" ? "Trending Collection" :
-             "Exclusive Collection";
+      return selectedCollection === "new-arrivals"
+        ? "New Arrivals"
+        : selectedCollection === "trending"
+          ? "Trending Collection"
+          : "Exclusive Collection";
     }
     if (selectedCategory === "all") return "All Products";
     const category = categories.find((cat) => cat.slug === selectedCategory);
@@ -267,11 +295,19 @@ export default function Products() {
   return (
     <>
       <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-      <SideDrawer isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} onCategorySelect={handleCategorySelect} />
+      <SideDrawer
+        isMenuOpen={isMenuOpen}
+        toggleMenu={toggleMenu}
+        onCategorySelect={handleCategorySelect}
+      />
 
       {/* Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-black/50 z-40" onClick={toggleMenu} data-testid="overlay-menu" />
+        <div
+          className="fixed inset-0 bg-black/50 z-40"
+          onClick={toggleMenu}
+          data-testid="overlay-menu"
+        />
       )}
 
       <motion.div
@@ -296,7 +332,10 @@ export default function Products() {
             >
               <ArrowLeft className="h-5 w-5" />
             </Button>
-            <h2 className="font-serif text-xl font-semibold" data-testid="text-category-name-mobile">
+            <h2
+              className="font-serif text-xl font-semibold"
+              data-testid="text-category-name-mobile"
+            >
               {currentCategoryName}
             </h2>
           </div>
@@ -369,19 +408,34 @@ export default function Products() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuItem onClick={() => setSortBy("default")} data-testid="sort-default">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("default")}
+                    data-testid="sort-default"
+                  >
                     Default
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSortBy("price-low")} data-testid="sort-price-low">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("price-low")}
+                    data-testid="sort-price-low"
+                  >
                     Price: Low to High
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSortBy("price-high")} data-testid="sort-price-high">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("price-high")}
+                    data-testid="sort-price-high"
+                  >
                     Price: High to Low
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSortBy("name-asc")} data-testid="sort-name-asc">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("name-asc")}
+                    data-testid="sort-name-asc"
+                  >
                     Name: A to Z
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSortBy("name-desc")} data-testid="sort-name-desc">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("name-desc")}
+                    data-testid="sort-name-desc"
+                  >
                     Name: Z to A
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -390,15 +444,19 @@ export default function Products() {
 
             {/* Product count - Mobile */}
             <div className="mt-3 text-center">
-              <p className="text-sm text-muted-foreground" data-testid="text-product-count-mobile">
-                Showing {filteredAndSortedProducts.length} of {products.length} products
+              <p
+                className="text-sm text-muted-foreground"
+                data-testid="text-product-count-mobile"
+              >
+                Showing {filteredAndSortedProducts.length} of {products.length}{" "}
+                products
               </p>
             </div>
           </div>
         </div>
 
         {/* Spacer for fixed filter bar - Mobile */}
-        <div className="md:hidden h-[85px]" />
+        <div className="md:hidden h-[0px]" />
 
         {/* Desktop Layout with Sidebar */}
         <div className="container mx-auto px-4 py-6">
@@ -413,13 +471,20 @@ export default function Products() {
                 <ArrowLeft className="h-4 w-4" />
                 Back
               </Button>
-              <h2 className="font-serif text-2xl font-semibold" data-testid="text-category-name-desktop">
+              <h2
+                className="font-serif text-2xl font-semibold"
+                data-testid="text-category-name-desktop"
+              >
                 {currentCategoryName}
               </h2>
             </div>
             <div className="flex items-center gap-4">
-              <p className="text-sm text-muted-foreground" data-testid="text-product-count">
-                Showing {filteredAndSortedProducts.length} of {products.length} products
+              <p
+                className="text-sm text-muted-foreground"
+                data-testid="text-product-count"
+              >
+                Showing {filteredAndSortedProducts.length} of {products.length}{" "}
+                products
               </p>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -433,19 +498,34 @@ export default function Products() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuItem onClick={() => setSortBy("default")} data-testid="sort-default-desktop">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("default")}
+                    data-testid="sort-default-desktop"
+                  >
                     Default
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSortBy("price-low")} data-testid="sort-price-low-desktop">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("price-low")}
+                    data-testid="sort-price-low-desktop"
+                  >
                     Price: Low to High
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSortBy("price-high")} data-testid="sort-price-high-desktop">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("price-high")}
+                    data-testid="sort-price-high-desktop"
+                  >
                     Price: High to Low
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSortBy("name-asc")} data-testid="sort-name-asc-desktop">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("name-asc")}
+                    data-testid="sort-name-asc-desktop"
+                  >
                     Name: A to Z
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSortBy("name-desc")} data-testid="sort-name-desc-desktop">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("name-desc")}
+                    data-testid="sort-name-desc-desktop"
+                  >
                     Name: Z to A
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -466,8 +546,14 @@ export default function Products() {
                     className="flex items-center justify-between w-full mb-3"
                     data-testid="button-toggle-price-filter"
                   >
-                    <Label className="text-base font-medium cursor-pointer">Price</Label>
-                    {showPriceFilter ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                    <Label className="text-base font-medium cursor-pointer">
+                      Price
+                    </Label>
+                    {showPriceFilter ? (
+                      <ChevronUp className="h-4 w-4" />
+                    ) : (
+                      <ChevronDown className="h-4 w-4" />
+                    )}
                   </button>
                   {showPriceFilter && (
                     <>
@@ -476,7 +562,9 @@ export default function Products() {
                         max={500000}
                         step={5000}
                         value={priceRange}
-                        onValueChange={(value) => setPriceRange([value[0], value[1]])}
+                        onValueChange={(value) =>
+                          setPriceRange([value[0], value[1]])
+                        }
                         className="mt-2"
                       />
                       <div className="flex justify-between text-xs text-muted-foreground mt-2">
@@ -489,16 +577,27 @@ export default function Products() {
 
                 {/* Purity/Karat Filter */}
                 <div>
-                  <Label className="text-sm font-medium mb-3 block">Purity / Karat</Label>
+                  <Label className="text-sm font-medium mb-3 block">
+                    Purity / Karat
+                  </Label>
                   <div className="space-y-2">
                     {["22K", "18K", "14K", "24K"].map((purity) => (
                       <div key={purity} className="flex items-center space-x-2">
                         <Checkbox
                           id={`desktop-purity-${purity}`}
                           checked={filters.purity.includes(purity)}
-                          onCheckedChange={(checked) => handleCheckboxChange("purity", purity, checked as boolean)}
+                          onCheckedChange={(checked) =>
+                            handleCheckboxChange(
+                              "purity",
+                              purity,
+                              checked as boolean,
+                            )
+                          }
                         />
-                        <label htmlFor={`desktop-purity-${purity}`} className="text-sm cursor-pointer">
+                        <label
+                          htmlFor={`desktop-purity-${purity}`}
+                          className="text-sm cursor-pointer"
+                        >
                           {purity}
                         </label>
                       </div>
@@ -508,16 +607,27 @@ export default function Products() {
 
                 {/* Weight Range Filter */}
                 <div>
-                  <Label className="text-sm font-medium mb-3 block">Weight Range</Label>
+                  <Label className="text-sm font-medium mb-3 block">
+                    Weight Range
+                  </Label>
                   <div className="space-y-2">
                     {["<5g", "5g-10g", "10g-20g", "20g+"].map((weight) => (
                       <div key={weight} className="flex items-center space-x-2">
                         <Checkbox
                           id={`desktop-weight-${weight}`}
                           checked={filters.weight.includes(weight)}
-                          onCheckedChange={(checked) => handleCheckboxChange("weight", weight, checked as boolean)}
+                          onCheckedChange={(checked) =>
+                            handleCheckboxChange(
+                              "weight",
+                              weight,
+                              checked as boolean,
+                            )
+                          }
                         />
-                        <label htmlFor={`desktop-weight-${weight}`} className="text-sm cursor-pointer">
+                        <label
+                          htmlFor={`desktop-weight-${weight}`}
+                          className="text-sm cursor-pointer"
+                        >
                           {weight}
                         </label>
                       </div>
@@ -527,16 +637,34 @@ export default function Products() {
 
                 {/* Stone/Gem Filter */}
                 <div>
-                  <Label className="text-sm font-medium mb-3 block">Stone / Gem</Label>
+                  <Label className="text-sm font-medium mb-3 block">
+                    Stone / Gem
+                  </Label>
                   <div className="space-y-2">
-                    {["Diamond", "Emerald", "Ruby", "Sapphire", "Pearl", "None"].map((stone) => (
+                    {[
+                      "Diamond",
+                      "Emerald",
+                      "Ruby",
+                      "Sapphire",
+                      "Pearl",
+                      "None",
+                    ].map((stone) => (
                       <div key={stone} className="flex items-center space-x-2">
                         <Checkbox
                           id={`desktop-stone-${stone}`}
                           checked={filters.stone.includes(stone)}
-                          onCheckedChange={(checked) => handleCheckboxChange("stone", stone, checked as boolean)}
+                          onCheckedChange={(checked) =>
+                            handleCheckboxChange(
+                              "stone",
+                              stone,
+                              checked as boolean,
+                            )
+                          }
                         />
-                        <label htmlFor={`desktop-stone-${stone}`} className="text-sm cursor-pointer">
+                        <label
+                          htmlFor={`desktop-stone-${stone}`}
+                          className="text-sm cursor-pointer"
+                        >
                           {stone}
                         </label>
                       </div>
@@ -546,16 +674,27 @@ export default function Products() {
 
                 {/* Gender Filter */}
                 <div>
-                  <Label className="text-sm font-medium mb-3 block">Gender</Label>
+                  <Label className="text-sm font-medium mb-3 block">
+                    Gender
+                  </Label>
                   <div className="space-y-2">
                     {["Men", "Women", "Kids"].map((gender) => (
                       <div key={gender} className="flex items-center space-x-2">
                         <Checkbox
                           id={`desktop-gender-${gender}`}
                           checked={filters.gender.includes(gender)}
-                          onCheckedChange={(checked) => handleCheckboxChange("gender", gender, checked as boolean)}
+                          onCheckedChange={(checked) =>
+                            handleCheckboxChange(
+                              "gender",
+                              gender,
+                              checked as boolean,
+                            )
+                          }
                         />
-                        <label htmlFor={`desktop-gender-${gender}`} className="text-sm cursor-pointer">
+                        <label
+                          htmlFor={`desktop-gender-${gender}`}
+                          className="text-sm cursor-pointer"
+                        >
                           {gender}
                         </label>
                       </div>
@@ -565,20 +704,36 @@ export default function Products() {
 
                 {/* Occasion Filter */}
                 <div>
-                  <Label className="text-sm font-medium mb-3 block">Occasion</Label>
+                  <Label className="text-sm font-medium mb-3 block">
+                    Occasion
+                  </Label>
                   <div className="space-y-2">
-                    {["Daily Wear", "Bridal", "Office Wear", "Festive"].map((occasion) => (
-                      <div key={occasion} className="flex items-center space-x-2">
-                        <Checkbox
-                          id={`desktop-occasion-${occasion}`}
-                          checked={filters.occasion.includes(occasion)}
-                          onCheckedChange={(checked) => handleCheckboxChange("occasion", occasion, checked as boolean)}
-                        />
-                        <label htmlFor={`desktop-occasion-${occasion}`} className="text-sm cursor-pointer">
-                          {occasion}
-                        </label>
-                      </div>
-                    ))}
+                    {["Daily Wear", "Bridal", "Office Wear", "Festive"].map(
+                      (occasion) => (
+                        <div
+                          key={occasion}
+                          className="flex items-center space-x-2"
+                        >
+                          <Checkbox
+                            id={`desktop-occasion-${occasion}`}
+                            checked={filters.occasion.includes(occasion)}
+                            onCheckedChange={(checked) =>
+                              handleCheckboxChange(
+                                "occasion",
+                                occasion,
+                                checked as boolean,
+                              )
+                            }
+                          />
+                          <label
+                            htmlFor={`desktop-occasion-${occasion}`}
+                            className="text-sm cursor-pointer"
+                          >
+                            {occasion}
+                          </label>
+                        </div>
+                      ),
+                    )}
                   </div>
                 </div>
               </div>
@@ -600,7 +755,10 @@ export default function Products() {
                 </div>
               ) : filteredAndSortedProducts.length === 0 ? (
                 <div className="text-center py-16">
-                  <p className="text-muted-foreground text-lg" data-testid="text-no-products">
+                  <p
+                    className="text-muted-foreground text-lg"
+                    data-testid="text-no-products"
+                  >
                     No products found. Try adjusting your filters.
                   </p>
                 </div>
@@ -618,7 +776,10 @@ export default function Products() {
                     >
                       <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-muted">
                         <img
-                          src={product.imageUrl || "https://via.placeholder.com/300x400?text=No+Image"}
+                          src={
+                            product.imageUrl ||
+                            "https://via.placeholder.com/300x400?text=No+Image"
+                          }
                           alt={product.name}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                         />
@@ -642,17 +803,25 @@ export default function Products() {
                           >
                             ₹ {product.price.toLocaleString("en-IN")}
                           </p>
-                          {product.originalPrice && product.originalPrice > product.price && (
-                            <>
-                              <p className="text-xs md:text-sm text-muted-foreground line-through">
-                                ₹ {product.originalPrice.toLocaleString("en-IN")}
-                              </p>
-                              <p className="text-xs md:text-sm text-red-600 font-medium">
-                                {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
-                                off
-                              </p>
-                            </>
-                          )}
+                          {product.originalPrice &&
+                            product.originalPrice > product.price && (
+                              <>
+                                <p className="text-xs md:text-sm text-muted-foreground line-through">
+                                  ₹{" "}
+                                  {product.originalPrice.toLocaleString(
+                                    "en-IN",
+                                  )}
+                                </p>
+                                <p className="text-xs md:text-sm text-red-600 font-medium">
+                                  {Math.round(
+                                    ((product.originalPrice - product.price) /
+                                      product.originalPrice) *
+                                      100,
+                                  )}
+                                  % off
+                                </p>
+                              </>
+                            )}
                         </div>
                       </div>
                     </motion.div>
