@@ -25,17 +25,36 @@ export default function ProductDetails() {
     window.scrollTo(0, 0);
   }, [params?.id]);
 
-  const { data: product, isLoading } = useQuery<Product>({
+  const { data: product, isLoading, error } = useQuery<Product>({
     queryKey: ['/api/products', params?.id],
     enabled: !!params?.id,
     queryFn: async () => {
+      console.log('🔍 Fetching product with ID:', params?.id);
+      console.log('🌐 Request URL:', `/api/products/${params?.id}`);
+      
       const response = await fetch(`/api/products/${params?.id}`);
+      
+      console.log('📡 Response status:', response.status);
+      console.log('📡 Response OK:', response.ok);
+      
       if (!response.ok) {
-        throw new Error("Failed to fetch product");
+        const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
+        console.error('❌ API Error:', errorData);
+        console.error('❌ Full response:', response);
+        throw new Error(`Failed to fetch product: ${errorData.message || response.statusText}`);
       }
-      return response.json();
+      
+      const data = await response.json();
+      console.log('✅ Product data received:', data);
+      return data;
     },
   });
+
+  useEffect(() => {
+    if (error) {
+      console.error('🚨 Query Error:', error);
+    }
+  }, [error]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
