@@ -26,6 +26,7 @@ export interface IStorage {
   createProduct(product: InsertProduct): Promise<Product>;
   getNewArrivals(): Promise<Product[]>;
   getTrendingProducts(): Promise<Product[]>;
+  getExclusiveProducts(): Promise<Product[]>;
 
   // Carousel methods
   getCarouselImages(): Promise<CarouselImage[]>;
@@ -139,7 +140,8 @@ export class MongoDBStorage implements IStorage {
       inStock: product.inStock !== false,
       displayOrder: product.displayOrder || 0,
       isNewArrival: product.isNewArrival || false,
-      isNewTrend: product.isNewTrend || false,
+      isTrending: product.isTrending || false,
+      isExclusive: product.isExclusive || false,
     });
 
     return {
@@ -165,7 +167,21 @@ export class MongoDBStorage implements IStorage {
   async getTrendingProducts(): Promise<Product[]> {
     const products = await this.db
       .collection("products")
-      .find({ isNewTrend: true, inStock: true })
+      .find({ isTrending: true, inStock: true })
+      .sort({ displayOrder: 1 })
+      .limit(10)
+      .toArray();
+
+    return products.map((prod) => ({
+      ...prod,
+      _id: objectIdToString(prod._id),
+    })) as Product[];
+  }
+
+  async getExclusiveProducts(): Promise<Product[]> {
+    const products = await this.db
+      .collection("products")
+      .find({ isExclusive: true, inStock: true })
       .sort({ displayOrder: 1 })
       .limit(10)
       .toArray();
