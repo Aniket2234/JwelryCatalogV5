@@ -186,10 +186,12 @@ export class MongoDBStorage implements IStorage {
       .limit(10)
       .toArray();
 
-    return products.map((prod) => ({
-      ...prod,
-      _id: objectIdToString(prod._id),
-    })) as Product[];
+    return products
+      .filter((prod) => prod._id instanceof ObjectId)
+      .map((prod) => ({
+        ...prod,
+        _id: objectIdToString(prod._id),
+      })) as Product[];
   }
 
   // Carousel methods

@@ -80,5 +80,9 @@ export function objectIdToString(id: ObjectId | string): string {
 
 // Utility to convert string to MongoDB ObjectId
 export function stringToObjectId(id: string): ObjectId {
+  // Validate that the ID is a valid 24-character hex string
+  if (!ObjectId.isValid(id)) {
+    throw new Error(`Invalid ObjectId format: ${id}`);
+  }
   return new ObjectId(id);
 }

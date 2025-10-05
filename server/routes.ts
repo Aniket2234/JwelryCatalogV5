@@ -78,7 +78,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const products = await getStorage().getNewArrivals();
       res.json(products);
     } catch (error) {
-      res.status(500).json({ message: "Failed to fetch new arrivals" });
+      console.error("Error fetching new arrivals:", error);
+      res.status(500).json({ 
+        message: error instanceof Error ? error.message : "Failed to fetch new arrivals" 
+      });
     }
   });
 
@@ -87,7 +90,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const products = await getStorage().getTrendingProducts();
       res.json(products);
     } catch (error) {
-      res.status(500).json({ message: "Failed to fetch trending products" });
+      console.error("Error fetching trending products:", error);
+      res.status(500).json({ 
+        message: error instanceof Error ? error.message : "Failed to fetch trending products" 
+      });
     }
   });
 
@@ -96,7 +102,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const products = await getStorage().getExclusiveProducts();
       res.json(products);
     } catch (error) {
-      res.status(500).json({ message: "Failed to fetch exclusive products" });
+      console.error("Error fetching exclusive products:", error);
+      res.status(500).json({ 
+        message: error instanceof Error ? error.message : "Failed to fetch exclusive products" 
+      });
     }
   });
 
@@ -108,7 +117,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       res.json(product);
     } catch (error) {
-      res.status(500).json({ message: "Failed to fetch product" });
+      console.error("Error fetching product:", error);
+      const errorMessage = error instanceof Error ? error.message : "Failed to fetch product";
+      const statusCode = errorMessage.includes("Invalid ObjectId") ? 400 : 500;
+      res.status(statusCode).json({ message: errorMessage });
     }
   });
 

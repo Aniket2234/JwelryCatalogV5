@@ -1,0 +1,69 @@
+index-Crr3vQHS.js:48 🔍 API GET /api/rates
+index-Crr3vQHS.js:48 ✅ API GET /api/rates - 200 (3315ms)
+index-Crr3vQHS.js:48 🔍 API GET /api/categories
+index-Crr3vQHS.js:48 🔍 API GET /api/shop-info
+index-Crr3vQHS.js:48 🔍 API GET /api/products/new-arrivals
+index-Crr3vQHS.js:48 🔍 API GET /api/products/trending
+index-Crr3vQHS.js:48 🔍 API GET /api/products/exclusive
+index-Crr3vQHS.js:48  GET https://jwelry-catalog-v5.vercel.app/api/products/exclusive 500 (Internal Server Error)
+(anonymous) @ index-Crr3vQHS.js:48
+s @ index-Crr3vQHS.js:48
+w @ index-Crr3vQHS.js:48
+start @ index-Crr3vQHS.js:48
+fetch @ index-Crr3vQHS.js:48
+Ls @ index-Crr3vQHS.js:48
+onSubscribe @ index-Crr3vQHS.js:48
+subscribe @ index-Crr3vQHS.js:48
+(anonymous) @ index-Crr3vQHS.js:48
+H0 @ index-Crr3vQHS.js:38
+Xl @ index-Crr3vQHS.js:40
+Ro @ index-Crr3vQHS.js:40
+TE @ index-Crr3vQHS.js:40
+Er @ index-Crr3vQHS.js:40
+Jm @ index-Crr3vQHS.js:40
+wr @ index-Crr3vQHS.js:38
+(anonymous) @ index-Crr3vQHS.js:40
+index-Crr3vQHS.js:48 ❌ API GET /api/products/exclusive - 500 (2078ms)
+(anonymous) @ index-Crr3vQHS.js:48
+await in (anonymous)
+s @ index-Crr3vQHS.js:48
+w @ index-Crr3vQHS.js:48
+start @ index-Crr3vQHS.js:48
+fetch @ index-Crr3vQHS.js:48
+Ls @ index-Crr3vQHS.js:48
+onSubscribe @ index-Crr3vQHS.js:48
+subscribe @ index-Crr3vQHS.js:48
+(anonymous) @ index-Crr3vQHS.js:48
+H0 @ index-Crr3vQHS.js:38
+Xl @ index-Crr3vQHS.js:40
+Ro @ index-Crr3vQHS.js:40
+TE @ index-Crr3vQHS.js:40
+Er @ index-Crr3vQHS.js:40
+Jm @ index-Crr3vQHS.js:40
+wr @ index-Crr3vQHS.js:38
+(anonymous) @ index-Crr3vQHS.js:40
+index-Crr3vQHS.js:48 ❌ API GET /api/products/exclusive - Failed (2078ms) Error: 500: {"message":"input must be a 24 character hex string, 12 byte Uint8Array, or an integer"}
+    at qN (index-Crr3vQHS.js:48:40189)
+    at async index-Crr3vQHS.js:48:40663
+(anonymous) @ index-Crr3vQHS.js:48
+await in (anonymous)
+s @ index-Crr3vQHS.js:48
+w @ index-Crr3vQHS.js:48
+start @ index-Crr3vQHS.js:48
+fetch @ index-Crr3vQHS.js:48
+Ls @ index-Crr3vQHS.js:48
+onSubscribe @ index-Crr3vQHS.js:48
+subscribe @ index-Crr3vQHS.js:48
+(anonymous) @ index-Crr3vQHS.js:48
+H0 @ index-Crr3vQHS.js:38
+Xl @ index-Crr3vQHS.js:40
+Ro @ index-Crr3vQHS.js:40
+TE @ index-Crr3vQHS.js:40
+Er @ index-Crr3vQHS.js:40
+Jm @ index-Crr3vQHS.js:40
+wr @ index-Crr3vQHS.js:38
+(anonymous) @ index-Crr3vQHS.js:40
+index-Crr3vQHS.js:48 ✅ API GET /api/categories - 200 (2160ms)
+index-Crr3vQHS.js:48 ✅ API GET /api/shop-info - 200 (2544ms)
+index-Crr3vQHS.js:48 ✅ API GET /api/products/trending - 200 (2542ms)
+index-Crr3vQHS.js:48 ✅ API GET /api/products/new-arrivals - 200 (3149ms)
