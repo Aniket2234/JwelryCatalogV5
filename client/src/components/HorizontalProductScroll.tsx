@@ -48,7 +48,7 @@ export default function HorizontalProductScroll({
                   </span>
                 ))}
               </h2>
-              <div className="absolute -bottom-1 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent opacity-40"></div>
+              <div className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-70"></div>
             </div>
             {showViewAll && (
               <Button
@@ -117,7 +117,7 @@ export default function HorizontalProductScroll({
 
                     <div className="flex items-center gap-2">
                       <span
-                        className="text-lg font-bold text-black dark:text-white"
+                        className="text-lg font-semibold text-black dark:text-white"
                         data-testid={`product-price-${product._id}`}
                       >
                         ₹{product.price.toLocaleString("en-IN")}
