@@ -59,14 +59,25 @@ export default function CategoryGrid({
             >
               <div className="relative overflow-hidden">
                 <div className="aspect-[4/5] relative overflow-hidden">
-                  <img
-                    src={
-                      category.imageUrl ||
-                      `https://via.placeholder.com/200x250?text=${category.name}`
-                    }
-                    alt={category.name}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
+                  {category.slug === "rings" ? (
+                    <video
+                      src="/RINGS.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                  ) : (
+                    <img
+                      src={
+                        category.imageUrl ||
+                        `https://via.placeholder.com/200x250?text=${category.name}`
+                      }
+                      alt={category.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                  )}
                 </div>
                 <div className="py-3 text-center">
                   <h3 className="font-medium text-gray-900">{category.name}</h3>
