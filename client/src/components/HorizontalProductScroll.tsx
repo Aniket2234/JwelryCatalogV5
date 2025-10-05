@@ -34,23 +34,26 @@ export default function HorizontalProductScroll({
       <section className="py-8 px-4 md:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-6">
-            <h2
-              className="text-3xl md:text-4xl font-serif font-bold pb-2 tracking-wide"
-              data-testid={`section-title-${title.toLowerCase().replace(/\s+/g, '-')}`}
-            >
-              {title.split(' ').map((word, index) => (
-                <span
-                  key={index}
-                  className={index === 0 ? "text-primary" : "text-black dark:text-white"}
-                >
-                  {word}{index < title.split(' ').length - 1 ? ' ' : ''}
-                </span>
-              ))}
-            </h2>
+            <div className="relative">
+              <h2
+                className="text-2xl md:text-4xl font-serif font-bold pb-2 tracking-wide"
+                data-testid={`section-title-${title.toLowerCase().replace(/\s+/g, '-')}`}
+              >
+                {title.split(' ').map((word, index) => (
+                  <span
+                    key={index}
+                    className={index === 0 ? "text-primary" : "text-black dark:text-white"}
+                  >
+                    {word}{index < title.split(' ').length - 1 ? ' ' : ''}
+                  </span>
+                ))}
+              </h2>
+              <div className="absolute -bottom-1 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent opacity-40"></div>
+            </div>
             {showViewAll && (
               <Button
                 variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-white transition-colors"
+                className="border-primary text-black dark:text-white hover:bg-primary hover:text-white transition-colors"
                 onClick={onViewAll}
                 data-testid={`button-view-all-${title.toLowerCase().replace(/\s+/g, '-')}`}
               >
@@ -114,7 +117,7 @@ export default function HorizontalProductScroll({
 
                     <div className="flex items-center gap-2">
                       <span
-                        className="text-lg font-bold text-primary"
+                        className="text-lg font-bold text-black dark:text-white"
                         data-testid={`product-price-${product._id}`}
                       >
                         ₹{product.price.toLocaleString("en-IN")}
