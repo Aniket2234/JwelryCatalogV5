@@ -41,10 +41,6 @@ export default function ProductDetails() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleBack = () => {
-    window.history.back();
-  };
-
   const handleCategorySelect = (category: string) => {
     setIsMenuOpen(false);
     setLocation(`/catalog?category=${category}`);
@@ -53,7 +49,7 @@ export default function ProductDetails() {
   if (isLoading) {
     return (
       <>
-        <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} showBackButton={true} onBack={handleBack} />
+        <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         <SideDrawer
           isMenuOpen={isMenuOpen}
           toggleMenu={toggleMenu}
@@ -86,7 +82,7 @@ export default function ProductDetails() {
   if (!product) {
     return (
       <>
-        <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} showBackButton={true} onBack={handleBack} />
+        <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         <SideDrawer
           isMenuOpen={isMenuOpen}
           toggleMenu={toggleMenu}
@@ -116,7 +112,7 @@ export default function ProductDetails() {
 
   return (
     <>
-      <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} showBackButton={true} onBack={handleBack} />
+      <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
       <SideDrawer
         isMenuOpen={isMenuOpen}
         toggleMenu={toggleMenu}
