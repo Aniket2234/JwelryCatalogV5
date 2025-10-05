@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import type { Category } from "@shared/schema";
 
 interface CategoryGridProps {
@@ -10,6 +11,7 @@ export default function CategoryGrid({
   selectedCategory,
   onCategorySelect,
 }: CategoryGridProps) {
+  const [, setLocation] = useLocation();
   const { data: categories, isLoading } = useQuery<Category[]>({
     queryKey: ["/api/categories"],
   });
@@ -48,7 +50,10 @@ export default function CategoryGrid({
           {categories.map((category) => (
             <button
               key={category._id}
-              onClick={() => onCategorySelect(category.slug)}
+              onClick={() => {
+                onCategorySelect(category.slug);
+                setLocation(`/products?category=${category.slug}`);
+              }}
               className="flex-shrink-0 w-48 group"
               data-testid={`category-card-${category.slug}`}
             >
