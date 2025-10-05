@@ -435,7 +435,7 @@ export default function Products() {
         </div>
 
         {/* Spacer for fixed filter bar - Mobile */}
-        <div className="md:hidden h-[0px]" />
+        <div className="md:hidden h-[70px]" />
 
         {/* Desktop Layout with Sidebar */}
         <div className="container mx-auto px-4 py-6">
