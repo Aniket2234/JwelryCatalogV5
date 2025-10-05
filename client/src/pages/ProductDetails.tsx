@@ -159,13 +159,13 @@ export default function ProductDetails() {
                 data-testid="product-main-image"
               />
               
-              {product.featured && (
+              {product.isNewArrival && (
                 <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground text-sm px-3 py-1">
                   NEW
                 </Badge>
               )}
               {product.originalPrice && (
-                <Badge className={`absolute ${product.featured ? 'top-14' : 'top-4'} right-4 bg-destructive text-destructive-foreground text-sm px-3 py-1`}>
+                <Badge className={`absolute ${product.isNewArrival ? 'top-14' : 'top-4'} right-4 bg-destructive text-destructive-foreground text-sm px-3 py-1`}>
                   SALE
                 </Badge>
               )}

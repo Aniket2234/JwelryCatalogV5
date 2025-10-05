@@ -26,7 +26,6 @@ export const productSchema = z.object({
   subImages: z.array(z.string()).default([]),
   category: z.string(),
   tags: z.array(z.string()).default([]),
-  featured: z.boolean().default(false),
   inStock: z.boolean().default(true),
   displayOrder: z.number().default(0),
   purity: z.string().optional(),

@@ -136,7 +136,6 @@ export class MongoDBStorage implements IStorage {
     const result = await this.db.collection("products").insertOne({
       ...product,
       tags: product.tags || [],
-      featured: product.featured || false,
       inStock: product.inStock !== false,
       displayOrder: product.displayOrder || 0,
       isNewArrival: product.isNewArrival || false,

@@ -199,7 +199,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           { 
             $set: { 
               isNewArrival: product.isNewArrival !== undefined ? product.isNewArrival : isNewArrival,
-              isTrending: product.isTrending !== undefined ? product.isTrending : (product.isNewTrend !== undefined ? product.isNewTrend : isTrending),
+              isTrending: product.isTrending !== undefined ? product.isTrending : isTrending,
               isExclusive: product.isExclusive !== undefined ? product.isExclusive : isExclusive
             } 
           }

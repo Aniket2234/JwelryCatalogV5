@@ -40,7 +40,9 @@ async function createIndexes(database: Db) {
   try {
     // Products indexes
     await database.collection("products").createIndex({ category: 1 });
-    await database.collection("products").createIndex({ featured: 1 });
+    await database.collection("products").createIndex({ isNewArrival: 1 });
+    await database.collection("products").createIndex({ isTrending: 1 });
+    await database.collection("products").createIndex({ isExclusive: 1 });
     await database.collection("products").createIndex({ displayOrder: 1 });
     
     // Categories indexes

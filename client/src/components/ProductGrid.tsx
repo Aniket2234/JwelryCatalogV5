@@ -186,13 +186,13 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                       data-testid={`img-product-${product._id}`}
                     />
-                    {product.featured && (
+                    {product.isNewArrival && (
                       <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
                         NEW
                       </Badge>
                     )}
                     {product.originalPrice && (
-                      <Badge className={`absolute ${product.featured ? 'top-12' : 'top-3'} right-3 bg-destructive text-destructive-foreground`}>
+                      <Badge className={`absolute ${product.isNewArrival ? 'top-12' : 'top-3'} right-3 bg-destructive text-destructive-foreground`}>
                         SALE
                       </Badge>
                     )}
