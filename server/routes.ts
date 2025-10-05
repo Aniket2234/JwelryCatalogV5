@@ -109,6 +109,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Diagnostic endpoint to check product flags
+  app.get("/api/products/check-flags", async (_req, res) => {
+    try {
+      const { getDatabase } = await import('./mongodb');
+      const db = getDatabase();
+      
+      const newArrivalsCount = await db.collection("products").countDocuments({ isNewArrival: true });
+      const trendingCount = await db.collection("products").countDocuments({ isTrending: true });
+      const exclusiveCount = await db.collection("products").countDocuments({ isExclusive: true });
+      const totalProducts = await db.collection("products").countDocuments({});
+      
+      // Get sample products
+      const sampleNewArrivals = await db.collection("products").find({ isNewArrival: true }).limit(2).toArray();
+      const sampleTrending = await db.collection("products").find({ isTrending: true }).limit(2).toArray();
+      
+      res.json({
+        totalProducts,
+        counts: {
+          newArrivals: newArrivalsCount,
+          trending: trendingCount,
+          exclusive: exclusiveCount
+        },
+        samples: {
+          newArrivals: sampleNewArrivals.map(p => ({ _id: p._id, name: p.name, isNewArrival: p.isNewArrival })),
+          trending: sampleTrending.map(p => ({ _id: p._id, name: p.name, isTrending: p.isTrending }))
+        }
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to check flags", error: String(error) });
+    }
+  });
+
   app.get("/api/products/:id", async (req, res) => {
     try {
       const product = await getStorage().getProductById(req.params.id);
