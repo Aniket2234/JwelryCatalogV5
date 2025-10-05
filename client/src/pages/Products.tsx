@@ -319,28 +319,6 @@ export default function Products() {
         {/* Spacer for fixed header */}
         <div className="h-[73px]" />
 
-        {/* Back Button and Title - Mobile */}
-        <div className="md:hidden sticky top-[73px] z-30 bg-background border-b border-border">
-          <div className="container mx-auto px-4 py-3 flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handleBack}
-              className="p-2 hover:bg-muted rounded-lg transition-colors"
-              aria-label="Go back"
-              data-testid="button-back-mobile"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <h2
-              className="font-serif text-xl font-semibold"
-              data-testid="text-category-name-mobile"
-            >
-              {currentCategoryName}
-            </h2>
-          </div>
-        </div>
-
         {/* Search Bar */}
         <div className="sticky top-[73px] md:top-[73px] z-20 bg-background border-b border-border shadow-sm">
           <div className="container mx-auto px-4 py-4">
@@ -460,24 +438,7 @@ export default function Products() {
 
         {/* Desktop Layout with Sidebar */}
         <div className="container mx-auto px-4 py-6">
-          <div className="hidden md:flex items-center justify-between mb-6">
-            <div className="flex items-center gap-4">
-              <Button
-                variant="ghost"
-                onClick={handleBack}
-                className="flex items-center gap-2 hover:bg-muted"
-                data-testid="button-back-desktop"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Back
-              </Button>
-              <h2
-                className="font-serif text-2xl font-semibold"
-                data-testid="text-category-name-desktop"
-              >
-                {currentCategoryName}
-              </h2>
-            </div>
+          <div className="hidden md:flex items-center justify-end mb-6">
             <div className="flex items-center gap-4">
               <p
                 className="text-sm text-muted-foreground"
