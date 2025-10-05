@@ -109,7 +109,7 @@ export default function HorizontalProductScroll({
 
                   <div>
                     <h3
-                      className="font-serif text-base font-semibold mb-2 line-clamp-2"
+                      className="font-serif text-base font-semibold mb-2 line-clamp-2 transition-colors duration-300 group-hover:text-primary"
                       data-testid={`product-name-${product._id}`}
                     >
                       {product.name}
