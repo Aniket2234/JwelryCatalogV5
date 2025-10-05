@@ -106,6 +106,21 @@ export class MongoStorage {
     }));
   }
 
+  async getExclusiveProducts() {
+    const products = await this.db
+      .collection("products")
+      .find({ isExclusive: true, inStock: true })
+      .sort({ displayOrder: 1 })
+      .limit(10)
+      .toArray();
+    return products
+      .filter((prod) => prod._id instanceof ObjectId)
+      .map((prod) => ({
+        ...prod,
+        _id: objectIdToString(prod._id),
+      }));
+  }
+
   async createProduct(data: any) {
     const result = await this.db.collection("products").insertOne(data);
     const product = await this.db
