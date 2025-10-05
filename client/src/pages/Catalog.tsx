@@ -28,34 +28,44 @@ export default function Catalog() {
     gender: [],
     occasion: [],
   });
-  const [viewMode, setViewMode] = useState<"home" | "new-arrivals" | "trending" | "exclusive">("home");
+  const [viewMode, setViewMode] = useState<
+    "home" | "new-arrivals" | "trending" | "exclusive"
+  >("home");
 
   // Fetch new arrivals
-  const { data: newArrivals = [], isLoading: loadingNewArrivals } = useQuery<Product[]>({
+  const { data: newArrivals = [], isLoading: loadingNewArrivals } = useQuery<
+    Product[]
+  >({
     queryKey: ["/api/products/new-arrivals"],
   });
 
   // Fetch trending products
-  const { data: trendingProducts = [], isLoading: loadingTrending } = useQuery<Product[]>({
+  const { data: trendingProducts = [], isLoading: loadingTrending } = useQuery<
+    Product[]
+  >({
     queryKey: ["/api/products/trending"],
   });
 
   // Fetch exclusive products
-  const { data: exclusiveProducts = [], isLoading: loadingExclusive } = useQuery<Product[]>({
-    queryKey: ["/api/products/exclusive"],
-  });
+  const { data: exclusiveProducts = [], isLoading: loadingExclusive } =
+    useQuery<Product[]>({
+      queryKey: ["/api/products/exclusive"],
+    });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const categoryParam = params.get('category');
+    const categoryParam = params.get("category");
     if (categoryParam) {
       setSelectedCategory(categoryParam);
       setViewMode("home");
-      
+
       setTimeout(() => {
         const productsSection = document.querySelector("#products-section");
         if (productsSection) {
-          productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          productsSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
         }
       }, 100);
     }
@@ -98,13 +108,14 @@ export default function Catalog() {
         (product) =>
           product.name.toLowerCase().includes(query) ||
           product.description.toLowerCase().includes(query) ||
-          product.category.toLowerCase().includes(query)
+          product.category.toLowerCase().includes(query),
       );
     }
 
     if (priceRange) {
       filtered = filtered.filter(
-        (product) => product.price >= priceRange[0] && product.price <= priceRange[1]
+        (product) =>
+          product.price >= priceRange[0] && product.price <= priceRange[1],
       );
     }
 
@@ -119,8 +130,8 @@ export default function Catalog() {
 
   return (
     <>
-      <Header 
-        isMenuOpen={isMenuOpen} 
+      <Header
+        isMenuOpen={isMenuOpen}
         toggleMenu={toggleMenu}
         showBackButton={showBackButton}
         onBack={handleBackToHome}
@@ -150,14 +161,17 @@ export default function Catalog() {
         <div className="h-[73px]" />
 
         <ImageCarousel />
-        <SearchBar
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          showFilterDialog={showFilterDialog}
-          onToggleFilter={() => setShowFilterDialog(!showFilterDialog)}
-          priceRange={priceRange}
-          onPriceRangeChange={setPriceRange}
-        />
+        {/* Hide search bar on main home page, show on other pages */}
+        {!(selectedCategory === "all" && viewMode === "home") && (
+          <SearchBar
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            showFilterDialog={showFilterDialog}
+            onToggleFilter={() => setShowFilterDialog(!showFilterDialog)}
+            priceRange={priceRange}
+            onPriceRangeChange={setPriceRange}
+          />
+        )}
         <CategoryGrid
           selectedCategory={selectedCategory}
           onCategorySelect={setSelectedCategory}
@@ -195,16 +209,19 @@ export default function Catalog() {
               )}
 
               {/* Show message when search returns no results */}
-              {(searchQuery.trim() || priceRange[0] > 0 || priceRange[1] < 500000) && 
-               filteredNewArrivals.length === 0 && 
-               filteredTrending.length === 0 && 
-               filteredExclusive.length === 0 && (
-                <div className="text-center py-12">
-                  <p className="text-muted-foreground text-lg">
-                    No products match your search criteria. Try adjusting your filters.
-                  </p>
-                </div>
-              )}
+              {(searchQuery.trim() ||
+                priceRange[0] > 0 ||
+                priceRange[1] < 500000) &&
+                filteredNewArrivals.length === 0 &&
+                filteredTrending.length === 0 &&
+                filteredExclusive.length === 0 && (
+                  <div className="text-center py-12">
+                    <p className="text-muted-foreground text-lg">
+                      No products match your search criteria. Try adjusting your
+                      filters.
+                    </p>
+                  </div>
+                )}
             </>
           )}
 
