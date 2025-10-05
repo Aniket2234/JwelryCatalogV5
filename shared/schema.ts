@@ -35,7 +35,8 @@ export const productSchema = z.object({
   gender: z.string().optional(),
   occasion: z.string().optional(),
   isNewArrival: z.boolean().default(false),
-  isNewTrend: z.boolean().default(false),
+  isTrending: z.boolean().default(false),
+  isExclusive: z.boolean().default(false),
 });
 
 export const insertProductSchema = productSchema.omit({ _id: true });
