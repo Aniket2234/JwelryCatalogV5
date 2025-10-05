@@ -342,7 +342,7 @@ export default function Products() {
         </div>
 
         {/* Sort and Filter Bar - Mobile */}
-        <div className="md:hidden sticky top-[189px] z-10 bg-background border-b border-border">
+        <div className="md:hidden fixed top-[134px] left-0 right-0 z-20 bg-background border-b border-border shadow-sm">
           <div className="container mx-auto px-4 py-3">
             <div className="flex items-center justify-between gap-4">
               {/* Filters Button */}
@@ -396,6 +396,9 @@ export default function Products() {
             </div>
           </div>
         </div>
+
+        {/* Spacer for fixed filter bar - Mobile */}
+        <div className="md:hidden h-[100px]" />
 
         {/* Desktop Layout with Sidebar */}
         <div className="container mx-auto px-4 py-6">
