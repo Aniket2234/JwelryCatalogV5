@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { X, Gem, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -16,6 +17,7 @@ export default function SideDrawer({
   toggleMenu,
   onCategorySelect,
 }: SideDrawerProps) {
+  const [, setLocation] = useLocation();
   const { data: categories, isLoading: categoriesLoading } = useQuery<Category[]>({
     queryKey: ["/api/categories"],
   });
@@ -26,13 +28,8 @@ export default function SideDrawer({
 
   const handleCategoryClick = (slug: string) => {
     onCategorySelect(slug);
+    setLocation(`/products?category=${slug}`);
     toggleMenu();
-    setTimeout(() => {
-      const productsSection = document.querySelector("#products-section");
-      if (productsSection) {
-        productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 100);
   };
 
   return (
