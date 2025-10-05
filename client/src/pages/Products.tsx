@@ -438,7 +438,7 @@ export default function Products() {
         <div className="md:hidden h-[70px]" />
 
         {/* Desktop Layout with Sidebar */}
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 pb-6 pt-0 md:pt-6">
           <div className="hidden md:flex items-center justify-end mb-6">
             <div className="flex items-center gap-4">
               <p
