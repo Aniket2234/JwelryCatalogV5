@@ -28,7 +28,7 @@ export default function Catalog() {
     gender: [],
     occasion: [],
   });
-  const [viewMode, setViewMode] = useState<"home" | "new-arrivals" | "trending">("home");
+  const [viewMode, setViewMode] = useState<"home" | "new-arrivals" | "trending" | "exclusive">("home");
 
   // Fetch new arrivals
   const { data: newArrivals = [], isLoading: loadingNewArrivals } = useQuery<Product[]>({
@@ -38,6 +38,11 @@ export default function Catalog() {
   // Fetch trending products
   const { data: trendingProducts = [], isLoading: loadingTrending } = useQuery<Product[]>({
     queryKey: ["/api/products/trending"],
+  });
+
+  // Fetch exclusive products
+  const { data: exclusiveProducts = [], isLoading: loadingExclusive } = useQuery<Product[]>({
+    queryKey: ["/api/products/exclusive"],
   });
 
   useEffect(() => {
@@ -76,6 +81,11 @@ export default function Catalog() {
     setSelectedCategory("all");
   };
 
+  const handleViewAllExclusive = () => {
+    setViewMode("exclusive");
+    setSelectedCategory("all");
+  };
+
   const handleBackToHome = () => {
     setViewMode("home");
     setSelectedCategory("all");
@@ -106,6 +116,7 @@ export default function Catalog() {
 
   const filteredNewArrivals = filterProducts(newArrivals);
   const filteredTrending = filterProducts(trendingProducts);
+  const filteredExclusive = filterProducts(exclusiveProducts);
 
   const showBackButton = selectedCategory !== "all" || viewMode !== "home";
 
@@ -177,10 +188,20 @@ export default function Catalog() {
                 />
               )}
 
+              {!loadingExclusive && filteredExclusive.length > 0 && (
+                <HorizontalProductScroll
+                  title="Exclusive Collection"
+                  products={filteredExclusive}
+                  showViewAll={true}
+                  onViewAll={handleViewAllExclusive}
+                />
+              )}
+
               {/* Show message when search returns no results */}
               {(searchQuery.trim() || priceRange[0] > 0 || priceRange[1] < 500000) && 
                filteredNewArrivals.length === 0 && 
-               filteredTrending.length === 0 && (
+               filteredTrending.length === 0 && 
+               filteredExclusive.length === 0 && (
                 <div className="text-center py-12">
                   <p className="text-muted-foreground text-lg">
                     No products match your search criteria. Try adjusting your filters.
@@ -204,6 +225,16 @@ export default function Catalog() {
           {selectedCategory === "all" && viewMode === "trending" && (
             <ProductGrid
               selectedCategory="trending"
+              searchQuery={searchQuery}
+              priceRange={priceRange}
+              filters={filters}
+            />
+          )}
+
+          {/* Show all Exclusive products in grid view */}
+          {selectedCategory === "all" && viewMode === "exclusive" && (
+            <ProductGrid
+              selectedCategory="exclusive"
               searchQuery={searchQuery}
               priceRange={priceRange}
               filters={filters}

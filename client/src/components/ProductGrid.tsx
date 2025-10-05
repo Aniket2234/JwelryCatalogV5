@@ -31,6 +31,8 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
         url = "/api/products/new-arrivals";
       } else if (selectedCategory === "trending") {
         url = "/api/products/trending";
+      } else if (selectedCategory === "exclusive") {
+        url = "/api/products/exclusive";
       } else if (selectedCategory !== "all") {
         url = `/api/products?category=${selectedCategory}`;
       }
