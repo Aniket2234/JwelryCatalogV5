@@ -330,7 +330,7 @@ export default function Products() {
                 placeholder="What are you looking for?"
                 value={localSearchQuery}
                 onChange={(e) => setLocalSearchQuery(e.target.value)}
-                className="pl-10 pr-20 h-12 rounded-lg border-border bg-background"
+                className="pl-10 pr-20 h-12 rounded-full border-border bg-background"
                 data-testid="input-search"
               />
               <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
