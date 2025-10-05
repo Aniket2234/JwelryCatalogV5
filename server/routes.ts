@@ -201,7 +201,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
               isNewArrival: product.isNewArrival !== undefined ? product.isNewArrival : isNewArrival,
               isTrending: product.isTrending !== undefined ? product.isTrending : isTrending,
               isExclusive: product.isExclusive !== undefined ? product.isExclusive : isExclusive
-            } 
+            },
+            $unset: {
+              featured: "",
+              isNewTrend: ""
+            }
           }
         );
       });
