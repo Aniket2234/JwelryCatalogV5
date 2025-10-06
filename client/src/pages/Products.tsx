@@ -764,28 +764,33 @@ export default function Products() {
                       </div>
                       <div className="mt-3">
                         <h3
-                          className="font-medium text-sm md:text-base line-clamp-2 group-hover:text-primary transition-colors"
+                          className="font-medium text-sm md:text-base line-clamp-2 group-hover:text-primary transition-colors min-h-[2.5rem]"
                           data-testid={`text-product-name-${product._id}`}
                         >
                           {product.name}
                         </h3>
-                        <div className="mt-1 flex items-center gap-2">
-                          <p
-                            className="font-semibold text-base md:text-lg text-foreground"
-                            data-testid={`text-product-price-${product._id}`}
-                          >
-                            ₹ {product.price.toLocaleString("en-IN")}
-                          </p>
-                          {product.originalPrice &&
-                            product.originalPrice > product.price && (
-                              <>
-                                <p className="text-xs md:text-sm text-muted-foreground line-through">
+                        <div className="mt-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <p
+                              className="font-semibold text-sm md:text-base text-foreground break-words leading-tight"
+                              data-testid={`text-product-price-${product._id}`}
+                            >
+                              ₹ {product.price.toLocaleString("en-IN")}
+                            </p>
+                            {product.originalPrice &&
+                              product.originalPrice > product.price && (
+                                <p className="text-xs text-muted-foreground line-through">
                                   ₹{" "}
                                   {product.originalPrice.toLocaleString(
                                     "en-IN",
                                   )}
                                 </p>
-                                <p className="text-xs md:text-sm text-red-600 font-medium">
+                              )}
+                          </div>
+                          <div className="min-h-[1.25rem] mt-0.5">
+                            {product.originalPrice &&
+                              product.originalPrice > product.price && (
+                                <p className="text-xs text-red-600 font-medium">
                                   {Math.round(
                                     ((product.originalPrice - product.price) /
                                       product.originalPrice) *
@@ -793,8 +798,8 @@ export default function Products() {
                                   )}
                                   % off
                                 </p>
-                              </>
-                            )}
+                              )}
+                          </div>
                         </div>
                       </div>
                     </motion.div>
