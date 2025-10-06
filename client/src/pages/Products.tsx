@@ -764,7 +764,7 @@ export default function Products() {
                       </div>
                       <div className="mt-3">
                         <h3
-                          className="font-medium text-sm md:text-base line-clamp-2 group-hover:text-primary transition-colors min-h-[2.5rem]"
+                          className="font-medium text-sm md:text-base line-clamp-2 group-hover:text-primary transition-colors"
                           data-testid={`text-product-name-${product._id}`}
                         >
                           {product.name}
