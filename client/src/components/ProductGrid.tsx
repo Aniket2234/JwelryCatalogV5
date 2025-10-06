@@ -210,21 +210,26 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
                     >
                       {product.description}
                     </p>
-                    <div className="flex items-center justify-between">
-                      <div>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                      <div className="flex-1 min-w-0">
                         <p
-                          className="font-bold text-xl text-primary"
+                          className="font-bold text-base sm:text-xl text-primary break-words"
                           data-testid={`text-product-price-${product._id}`}
                         >
                           ₹{product.price.toLocaleString()}
                         </p>
                         {product.originalPrice && (
-                          <p className="text-sm text-muted-foreground line-through">
+                          <p className="text-xs sm:text-sm text-muted-foreground line-through">
                             ₹{product.originalPrice.toLocaleString()}
                           </p>
                         )}
+                        {product.originalPrice && (
+                          <p className="text-xs text-destructive font-medium">
+                            {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% off
+                          </p>
+                        )}
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-1 self-end sm:self-auto">
                         <ShareButton
                           productName={product.name}
                           productUrl={`/product/${product._id}`}

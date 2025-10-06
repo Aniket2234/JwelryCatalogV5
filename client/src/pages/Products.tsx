@@ -531,7 +531,7 @@ export default function Products() {
                       />
                       <div className="flex justify-between text-xs text-muted-foreground mt-2">
                         <span>₹{priceRange[0].toLocaleString("en-IN")}</span>
-                        <span>₹{priceRange[1].toLocaleString("en-IN")}</span>
+                        <span>{priceRange[1] === 500000 ? "MAX" : `₹${priceRange[1].toLocaleString("en-IN")}`}</span>
                       </div>
                     </>
                   )}

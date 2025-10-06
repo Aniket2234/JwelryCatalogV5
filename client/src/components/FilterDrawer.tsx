@@ -113,7 +113,7 @@ export default function FilterDrawer({
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-2">
                       <span>₹0</span>
-                      <span>₹5,00,000</span>
+                      <span>MAX</span>
                     </div>
                   </div>
 
