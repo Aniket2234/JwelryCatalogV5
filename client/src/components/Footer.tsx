@@ -15,11 +15,11 @@ export default function Footer() {
           {/* Brand Info */}
           <div>
             <h3 className="font-serif text-2xl font-bold mb-4" data-testid="text-footer-brand">
-              <span className="text-primary">Jewelry</span> Catalog
+              <span className="text-primary">Jewellery</span> Catalog
             </h3>
             <p className="text-muted-foreground mb-4">
               Discover timeless elegance with our curated collection of fine
-              jewelry, crafted with precision and passion.
+              Jewellery, crafted with precision and passion.
             </p>
             <div className="flex gap-4">
               {shopInfo?.facebookUrl && (
@@ -121,7 +121,7 @@ export default function Footer() {
 
         <div className="border-t border-border pt-8 text-center text-muted-foreground text-sm">
           <p>
-            &copy; {new Date().getFullYear()} Jewelry Catalog. All rights
+            &copy; {new Date().getFullYear()} Jewellery Catalog. All rights
             reserved. | Privacy Policy | Terms of Service
           </p>
         </div>

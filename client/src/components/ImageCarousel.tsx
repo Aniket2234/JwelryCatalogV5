@@ -175,7 +175,7 @@ export default function VideoCarousel() {
     {
       _id: "4",
       title: "Bracelets",
-      subtitle: "Timeless luxury jewelry",
+      subtitle: "Timeless luxury Jewellery",
       videoSrc: "/v5.mp4",
     },
     {

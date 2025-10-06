@@ -20,7 +20,7 @@ export async function getDatabase(): Promise<Db> {
     cachedClient = new MongoClient(mongoUri);
     await cachedClient.connect();
     
-    const dbName = process.env.MONGODB_DB || mongoUri.split('/').pop()?.split('?')[0] || 'jewelry_catalog';
+    const dbName = process.env.MONGODB_DB || mongoUri.split('/').pop()?.split('?')[0] || 'Jewellery_catalog';
     cachedDb = cachedClient.db(dbName);
     
     // Create indexes on first connection

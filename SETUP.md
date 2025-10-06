@@ -2,7 +2,7 @@
 
 ## ✅ Configuration Complete
 
-Your jewelry catalog application has been successfully configured for Replit:
+Your Jewellery catalog application has been successfully configured for Replit:
 
 - ✅ All npm packages installed
 - ✅ Development workflow configured on port 5000
@@ -24,7 +24,7 @@ The application needs a MongoDB database connection to run. Follow these steps:
 2. Sign up for a free account
 3. Create a new cluster (M0 free tier is perfect)
 4. Click "Connect" → "Connect your application"
-5. Copy the connection string (looks like: `mongodb+srv://username:password@cluster.mongodb.net/jewelry_catalog`)
+5. Copy the connection string (looks like: `mongodb+srv://username:password@cluster.mongodb.net/Jewellery_catalog`)
 6. Replace `<password>` with your actual password
 
 **Option B: Other MongoDB Providers**
@@ -52,12 +52,12 @@ Once you've added the MongoDB URI secret:
    - Connect to your MongoDB database
    - Create necessary indexes automatically
    - Start the development server on port 5000
-3. Your jewelry catalog will be available in the webview!
+3. Your Jewellery catalog will be available in the webview!
 
 ## 🗄️ Database Collections
 
 The MongoDB database will store:
-- **products**: Jewelry items with images, prices, descriptions
+- **products**: Jewellery items with images, prices, descriptions
 - **categories**: Necklaces, rings, earrings, bracelets, etc.
 - **carousel_images**: Homepage slideshow images
 - **shop_info**: Contact details, social media links, business hours

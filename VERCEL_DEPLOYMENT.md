@@ -5,7 +5,7 @@ This project has been refactored for Vercel deployment with separate frontend (V
 ## Project Structure
 
 ```
-jewelry-catalog/
+Jewellery-catalog/
 ├── api/                          # Vercel Serverless API Functions
 │   ├── _lib/                     # Shared API utilities
 │   │   ├── mongodb.ts            # MongoDB connection (cached for serverless)
@@ -76,7 +76,7 @@ Set these in Vercel dashboard (Project Settings → Environment Variables):
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name?retryWrites=true&w=majority
 
 # Optional
-MONGODB_DB=jewelry_catalog
+MONGODB_DB=Jewellery_catalog
 NODE_ENV=production
 SCRAPE_CACHE_TTL=3600000
 SESSION_SECRET=your-secure-random-secret-key

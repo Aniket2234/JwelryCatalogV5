@@ -21,7 +21,7 @@ export async function connectToMongoDB(): Promise<Db> {
     await client.connect();
     
     // Extract database name from URI or use default
-    const dbName = mongoUri.split('/').pop()?.split('?')[0] || 'jewelry_catalog';
+    const dbName = mongoUri.split('/').pop()?.split('?')[0] || 'Jewellery_catalog';
     db = client.db(dbName);
     
     console.log(`Connected to MongoDB database: ${dbName}`);

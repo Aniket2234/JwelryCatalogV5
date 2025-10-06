@@ -110,7 +110,7 @@
 //               className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-4 text-white tracking-wide text-shadow-lg"
 //               data-testid="text-welcome-title"
 //             >
-//               <span className="text-primary">Jewelry</span> Catalog
+//               <span className="text-primary">Jewellery</span> Catalog
 //             </h1>
 //             <p
 //               className="font-display text-xl md:text-2xl text-white text-center max-w-2xl text-shadow-md mx-auto"
@@ -207,7 +207,7 @@ export default function Welcome() {
               className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-4 text-white tracking-wide text-shadow-lg"
               data-testid="text-welcome-title"
             >
-              <span className="text-primary">Jewelry</span> Catalog
+              <span className="text-primary">Jewellery</span> Catalog
             </h1>
             <p
               className="font-display text-xl md:text-2xl text-white text-center max-w-2xl text-shadow-md mx-auto"

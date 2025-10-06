@@ -264,7 +264,7 @@ export default function ProductDetails() {
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="pb-3 text-muted-foreground text-sm">
-                        Gold purity measured in karats, indicating the proportion of pure gold in the jewelry.
+                        Gold purity measured in karats, indicating the proportion of pure gold in the Jewellery.
                       </AccordionContent>
                     </AccordionItem>
                   )}
@@ -278,7 +278,7 @@ export default function ProductDetails() {
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="pb-3 text-muted-foreground text-sm">
-                        Approximate weight of the jewelry piece. Actual weight may vary slightly.
+                        Approximate weight of the Jewellery piece. Actual weight may vary slightly.
                       </AccordionContent>
                     </AccordionItem>
                   )}
@@ -332,7 +332,7 @@ export default function ProductDetails() {
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="pb-3 text-muted-foreground text-sm">
-                        Perfect occasion or event where this jewelry piece would be most suitable.
+                        Perfect occasion or event where this Jewellery piece would be most suitable.
                       </AccordionContent>
                     </AccordionItem>
                   )}

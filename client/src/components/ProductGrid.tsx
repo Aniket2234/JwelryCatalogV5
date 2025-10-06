@@ -109,7 +109,7 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
 
   const getCategoryName = (slug: string): string => {
     const categoryNames: Record<string, string> = {
-      all: "All Jewelry",
+      all: "All Jewellery",
       "new-arrivals": "New Arrivals",
       trending: "Trending Collection",
       necklaces: "Necklaces",
@@ -118,9 +118,9 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
       bracelets: "Bracelets",
       bangles: "Bangles",
       pendants: "Pendants",
-      sets: "Jewelry Sets",
+      sets: "Jewellery Sets",
     };
-    return categoryNames[slug] || "All Jewelry";
+    return categoryNames[slug] || "All Jewellery";
   };
 
   if (isLoading) {

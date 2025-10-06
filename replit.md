@@ -1,8 +1,8 @@
-# Jewelry Catalog Application
+# Jewellery Catalog Application
 
 ## Overview
 
-This is a modern jewelry catalog web application built with React and Express. The application displays a beautiful, elegant catalog of jewelry products with categories, featured items, and a carousel showcase. Users can browse different jewelry categories (necklaces, rings, earrings, bracelets, etc.), search for products, and view detailed product information. The application features a responsive design with a golden jewelry theme, smooth animations, and integrated social media connectivity.
+This is a modern Jewellery catalog web application built with React and Express. The application displays a beautiful, elegant catalog of Jewellery products with categories, featured items, and a carousel showcase. Users can browse different Jewellery categories (necklaces, rings, earrings, bracelets, etc.), search for products, and view detailed product information. The application features a responsive design with a golden Jewellery theme, smooth animations, and integrated social media connectivity.
 
 ## Recent Updates (October 2025)
 
@@ -106,7 +106,7 @@ Preferred communication style: Simple, everyday language.
 
 **Design Decisions:**
 - **Component-based UI**: Uses shadcn/ui (Radix UI primitives) for accessible, customizable components
-- **Custom theming**: Golden jewelry theme with CSS custom properties for colors and fonts
+- **Custom theming**: Golden Jewellery theme with CSS custom properties for colors and fonts
 - **Responsive layout**: Mobile-first approach with hamburger menu and side drawer navigation
 - **State management**: TanStack Query handles all server state, eliminating need for global state management
 - **File organization**: Components are modular with clear separation (pages, components, UI components)
@@ -131,7 +131,7 @@ Preferred communication style: Simple, everyday language.
    - Each endpoint is a separate file under `/api`
 
 **API Endpoints (under `/api`):**
-- Categories: CRUD operations for jewelry categories
+- Categories: CRUD operations for Jewellery categories
   - `GET /api/categories` - List all
   - `POST /api/categories` - Create
   - `GET /api/categories/:slug` - Get by slug
@@ -229,10 +229,10 @@ This project was successfully imported into Replit and configured for the Replit
 
 #### MongoDB Setup (Completed)
 
-✅ MongoDB database successfully connected using the `jewelry_catalog` database.
+✅ MongoDB database successfully connected using the `Jewellery_catalog` database.
 
 The application stores:
-- Product catalog (jewelry items)
+- Product catalog (Jewellery items)
 - Categories (necklaces, rings, earrings, etc.)
 - Carousel images for homepage
 - Shop information
