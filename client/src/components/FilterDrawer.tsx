@@ -20,6 +20,7 @@ interface FilterDrawerProps {
   onPriceRangeChange: (range: [number, number]) => void;
   filters: FilterOptions;
   onFiltersChange: (filters: FilterOptions) => void;
+  maxPrice: number;
 }
 
 export default function FilterDrawer({
@@ -29,6 +30,7 @@ export default function FilterDrawer({
   onPriceRangeChange,
   filters,
   onFiltersChange,
+  maxPrice,
 }: FilterDrawerProps) {
   const handlePriceChange = (value: number[]) => {
     onPriceRangeChange([value[0], value[1]]);
@@ -47,7 +49,7 @@ export default function FilterDrawer({
   };
 
   const handleResetFilters = () => {
-    onPriceRangeChange([0, 500000]);
+    onPriceRangeChange([0, maxPrice]);
     onFiltersChange({ purity: [], weight: [], stone: [], gender: [], occasion: [] });
   };
 
@@ -105,7 +107,7 @@ export default function FilterDrawer({
                     </div>
                     <Slider
                       min={0}
-                      max={500000}
+                      max={maxPrice}
                       step={5000}
                       value={priceRange}
                       onValueChange={handlePriceChange}
@@ -113,7 +115,7 @@ export default function FilterDrawer({
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-2">
                       <span>₹0</span>
-                      <span>MAX</span>
+                      <span>₹{maxPrice.toLocaleString()}</span>
                     </div>
                   </div>
 

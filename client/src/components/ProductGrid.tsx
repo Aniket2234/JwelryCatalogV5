@@ -175,7 +175,7 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
               {filteredProducts.map((product) => (
                 <Card
                   key={product._id}
-                  className="product-card overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition-all"
+                  className="product-card overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition-all flex flex-col h-full"
                   data-testid={`card-product-${product._id}`}
                   onClick={() => handleProductClick(product)}
                 >
@@ -197,39 +197,39 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
                       </Badge>
                     )}
                   </div>
-                  <CardContent className="p-4">
+                  <CardContent className="p-3 md:p-4 flex flex-col flex-1">
                     <h3
-                      className="font-serif text-lg font-semibold mb-2"
+                      className="font-serif text-sm md:text-lg font-semibold mb-1 md:mb-2 line-clamp-2 min-h-[2.5rem] md:min-h-[3.5rem]"
                       data-testid={`text-product-name-${product._id}`}
                     >
                       {product.name}
                     </h3>
                     <p
-                      className="text-sm text-muted-foreground mb-3 line-clamp-2"
+                      className="text-xs md:text-sm text-muted-foreground mb-2 md:mb-3 line-clamp-2 min-h-[2rem] md:min-h-[2.5rem]"
                       data-testid={`text-product-description-${product._id}`}
                     >
                       {product.description}
                     </p>
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <div className="flex flex-col gap-2 mt-auto">
                       <div className="flex-1 min-w-0">
                         <p
-                          className="font-bold text-base sm:text-xl text-primary break-words"
+                          className="font-bold text-sm md:text-lg text-primary break-words leading-tight"
                           data-testid={`text-product-price-${product._id}`}
                         >
                           ₹{product.price.toLocaleString()}
                         </p>
                         {product.originalPrice && (
-                          <p className="text-xs sm:text-sm text-muted-foreground line-through">
-                            ₹{product.originalPrice.toLocaleString()}
-                          </p>
-                        )}
-                        {product.originalPrice && (
-                          <p className="text-xs text-destructive font-medium">
-                            {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% off
-                          </p>
+                          <div className="flex items-center gap-2 flex-wrap mt-1">
+                            <p className="text-xs text-muted-foreground line-through">
+                              ₹{product.originalPrice.toLocaleString()}
+                            </p>
+                            <p className="text-xs text-destructive font-medium">
+                              {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% off
+                            </p>
+                          </div>
                         )}
                       </div>
-                      <div className="flex items-center gap-1 self-end sm:self-auto">
+                      <div className="flex items-center gap-1 justify-end">
                         <ShareButton
                           productName={product.name}
                           productUrl={`/product/${product._id}`}

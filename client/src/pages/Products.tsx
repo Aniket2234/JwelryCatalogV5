@@ -107,6 +107,17 @@ export default function Products() {
     queryKey: ["/api/categories"],
   });
 
+  // Calculate max price from products
+  const maxPrice = useMemo(() => {
+    if (products.length === 0) return 500000;
+    return Math.max(...products.map(p => p.price));
+  }, [products]);
+
+  // Update price range when products or maxPrice changes
+  useEffect(() => {
+    setPriceRange([0, maxPrice]);
+  }, [maxPrice]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -521,7 +532,7 @@ export default function Products() {
                     <>
                       <Slider
                         min={0}
-                        max={500000}
+                        max={maxPrice}
                         step={5000}
                         value={priceRange}
                         onValueChange={(value) =>
@@ -531,7 +542,7 @@ export default function Products() {
                       />
                       <div className="flex justify-between text-xs text-muted-foreground mt-2">
                         <span>₹{priceRange[0].toLocaleString("en-IN")}</span>
-                        <span>{priceRange[1] === 500000 ? "MAX" : `₹${priceRange[1].toLocaleString("en-IN")}`}</span>
+                        <span>₹{priceRange[1].toLocaleString("en-IN")}</span>
                       </div>
                     </>
                   )}
@@ -803,6 +814,7 @@ export default function Products() {
         onPriceRangeChange={setPriceRange}
         filters={filters}
         onFiltersChange={setFilters}
+        maxPrice={maxPrice}
       />
     </>
   );
