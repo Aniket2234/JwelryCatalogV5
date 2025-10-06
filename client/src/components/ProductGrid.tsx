@@ -212,22 +212,26 @@ export default function ProductGrid({ selectedCategory, searchQuery = "", priceR
                     </p>
                     <div className="flex flex-col gap-2 mt-auto">
                       <div className="flex-1 min-w-0">
-                        <p
-                          className="font-bold text-sm md:text-lg text-primary break-words leading-tight"
-                          data-testid={`text-product-price-${product._id}`}
-                        >
-                          ₹{product.price.toLocaleString()}
-                        </p>
-                        {product.originalPrice && (
-                          <div className="flex items-center gap-2 flex-wrap mt-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <p
+                            className="font-bold text-sm md:text-lg text-primary break-words leading-tight"
+                            data-testid={`text-product-price-${product._id}`}
+                          >
+                            ₹{product.price.toLocaleString()}
+                          </p>
+                          {product.originalPrice && (
                             <p className="text-xs text-muted-foreground line-through">
                               ₹{product.originalPrice.toLocaleString()}
                             </p>
+                          )}
+                        </div>
+                        <div className="min-h-[1.25rem] mt-0.5">
+                          {product.originalPrice && (
                             <p className="text-xs text-destructive font-medium">
                               {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% off
                             </p>
-                          </div>
-                        )}
+                          )}
+                        </div>
                       </div>
                       <div className="flex items-center gap-1 justify-end">
                         <ShareButton
